@@ -1,28 +1,4 @@
-<?php
 
-include '../config.php';
-
-if(isset($_GET['get_id'])){
-    $pid=$_GET['get_id'];
-    $sql="SELECT `passenger`.`passager_principal`,`passenger`.`contact_number`,
-    `passenger`.`date_de_prise_en_charge`,`passenger`.`Time`,`passenger`.`adresse_du_pick_up`,
-    `passenger`.`adresse_de_depose`,passenger.`nb_de_passager`,`passenger`.`options`,`driver`.`d_id`,`driver`.`dname`,
-    `driver`.`dtp_num`,`passenger`.`Vehicule_num` from driver,passenger where `driver`.d_id=`passenger`.d_id and  `passenger`.p_id=$pid";
-    $result = mysqli_query($con,$sql);
-    if(mysqli_num_rows($result)==1) {       
-        $row=mysqli_fetch_assoc($result);
-        $pp=$row['passager_principal'];
-        $cn=$row['contact_number'];
-        $dd=$row['date_de_prise_en_charge'];
-        $tm=$row['Time'];
-        $pu=$row['adresse_du_pick_up'];
-        $dp=$row['adresse_de_depose'];
-        $np=$row['nb_de_passager'];
-        $op=$row['options'];
-        $dn=$row['dname'];
-        $dtn=$row['dtp_num'];
-        $vn=$row['Vehicule_num'];
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,6 +13,7 @@ if(isset($_GET['get_id'])){
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+
   <style>
     
   </style>
@@ -63,7 +40,7 @@ if(isset($_GET['get_id'])){
                         </li>
                         </ul>
                         </td>
-                        <td style="border: bottom 0px;"> <h2 class="lead"><b>Bon de mission :</b> PCI1000<?php if(isset($_GET['get_id'])) echo $pid ?></h2></td>
+                        <td style="border: bottom 0px;"> <h2 class="lead"><b>Bon de mission :</b> PCI1000</h2></td>
                     </tr>
                     <tr>
                         <td colspan="2" style="border: bottom 0px;">
@@ -107,7 +84,7 @@ if(isset($_GET['get_id'])){
                                 </tr>
                                 <tr>
                                     <th>Passager principal</th>
-                                    <td><?php if(isset($_GET['get_id'])) echo  $row['passager_principal']; ?> | <?php if(isset($_GET['get_id'])) echo  $cn ?></td>
+                                    <td>{{ passager_principal }} | {{ contact_number }}</td>
                                 </tr>
                                 <tr>
                                     <th>Chauffeur</th>
@@ -163,9 +140,3 @@ if(isset($_GET['get_id'])){
 </body>
 </html>
 
-<?php
-    }
-
-}
-
-?>

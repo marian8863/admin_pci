@@ -101,7 +101,7 @@ $u_p = $_SESSION['user']['profile'];
                         <td><?= $row['passager_principal']?></td>
                         <td>
                             <a href="create_booking.php?get_id=<?= $row["p_id"]?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                            <a href="http://booking.pariscablimousine.fr/admin/print_invoice.php?get_id=<?= $row["p_id"]?>" class="btn btn-success"><i class="fas fa-download"></i></a>
+                            <a href="print_invoice.php?get_id=<?= $row["p_id"]?>" class="btn btn-success"><i class="fas fa-download"></i></a>
                             <button  class="btn btn-danger" data-href="?delete_id=<?=$row["p_id"]?>" data-toggle="modal" data-target="#confirm-delete-passenger"><i class="fas fa-trash"></i></button>
                         </td>
                     </tr>
