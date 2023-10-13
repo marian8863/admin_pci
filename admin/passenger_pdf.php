@@ -1,7 +1,7 @@
 <?php
 
 include '../config.php';
- $pp=$cn=$dd=$tm=$pu=$pu=$dp=$np=$op=$dn=$dtn=$vn=null;
+
 if(isset($_GET['get_id'])){
     $pid=$_GET['get_id'];
     $sql="SELECT `passenger`.`passager_principal`,`passenger`.`contact_number`,
@@ -66,7 +66,7 @@ if(isset($_GET['get_id'])){
                         </li>
                         </ul>
                         </td>
-                        <td style="border: bottom 0px;"> <h2 class="lead"><b>Bon de mission :</b> PCI1000<?= $pid ?></h2></td>
+                        <td style="border: bottom 0px;"> <h2 class="lead"><b>Bon de mission :</b> PCI1000<?php if(isset($_GET['get_id'])) echo $pid ?></h2></td>
                     </tr>
                     <tr>
                         <td colspan="2" style="border: bottom 0px;">
@@ -88,41 +88,41 @@ if(isset($_GET['get_id'])){
                             <tbody>
                                 <tr>
                                     <th>Référence</th>
-                                    <td>Réservation PCI1000<?= $pid ?> du 25/09/2023</td>
+                                    <td>Réservation PCI1000<?php if(isset($_GET['get_id'])) echo $pid ?> du 25/09/2023</td>
                                 </tr>
                                 <tr>
                                     <th>Date de prise en charge</th>
-                                    <td><?= $dd ?> | <?= $tm ?></td>
+                                    <td><?php if(isset($_GET['get_id'])) echo $dd ?> | <?php if(isset($_GET['get_id'])) echo $tm ?></td>
                                 </tr>
                                 <tr>
                                     <th>Adresse du pick-up</th>
-                                    <td><?= $pu ?>
+                                    <td><?php if(isset($_GET['get_id'])) echo $pu ?>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Adresse de dépose</th>
-                                    <td><?= $dp ?>
+                                    <td><?php if(isset($_GET['get_id'])) echo $dp ?>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Nb. de passager</th>
-                                    <td><?= $np ?> passagers</td>
+                                    <td><?php if(isset($_GET['get_id'])) echo $np ?> passagers</td>
                                 </tr>
                                 <tr>
                                     <th>Passager principal</th>
-                                    <td><?= $pp ?> | <?= $cn ?></td>
+                                    <td><?php if(isset($_GET['get_id'])) echo  $pp ?> | <?php if(isset($_GET['get_id'])) echo  $cn ?></td>
                                 </tr>
                                 <tr>
                                     <th>Chauffeur</th>
-                                    <td><?= $dn ?></td>
+                                    <td><?php if(isset($_GET['get_id'])) echo  $dn ?></td>
                                 </tr>
                                 <tr>
                                     <th>Véhicule</th>
-                                    <td><?= $vn ?></td>
+                                    <td><?php if(isset($_GET['get_id'])) echo $vn ?></td>
                                 </tr>
                                 <tr>
                                     <th>Options</th>
-                                    <td><?= $op ?></td>
+                                    <td><?php if(isset($_GET['get_id'])) echo $op ?></td>
                                 </tr>
                             </tbody>
                             </table>
