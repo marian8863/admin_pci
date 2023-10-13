@@ -22,11 +22,8 @@ if(isset($_GET['get_id'])){
         $dn=$row['dname'];
         $dtn=$row['dtp_num'];
         $vn=$row['Vehicule_num'];
-    }
-
-}
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -110,7 +107,7 @@ if(isset($_GET['get_id'])){
                                 </tr>
                                 <tr>
                                     <th>Passager principal</th>
-                                    <td><?php if(isset($_GET['get_id'])) echo  $pp ?> | <?php if(isset($_GET['get_id'])) echo  $cn ?></td>
+                                    <td><?php if(isset($_GET['get_id'])) echo  $row['passager_principal']; ?> | <?php if(isset($_GET['get_id'])) echo  $cn ?></td>
                                 </tr>
                                 <tr>
                                     <th>Chauffeur</th>
@@ -165,3 +162,10 @@ if(isset($_GET['get_id'])){
 <script src="dist/js/demo.js"></script>
 </body>
 </html>
+
+<?php
+    }
+
+}
+
+?>
