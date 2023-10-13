@@ -1,0 +1,167 @@
+<?php
+
+include '../config.php';
+ $pp=$cn=$dd=$tm=$pu=$pu=$dp=$np=$op=$dn=$dtn=$vn=null;
+if(isset($_GET['get_id'])){
+    $pid=$_GET['get_id'];
+    $sql="SELECT `passenger`.`passager_principal`,`passenger`.`contact_number`,
+    `passenger`.`date_de_prise_en_charge`,`passenger`.`Time`,`passenger`.`adresse_du_pick_up`,
+    `passenger`.`adresse_de_depose`,passenger.`nb_de_passager`,`passenger`.`options`,`driver`.`d_id`,`driver`.`dname`,
+    `driver`.`dtp_num`,`passenger`.`Vehicule_num` from driver,passenger where `driver`.d_id=`passenger`.d_id and  `passenger`.p_id=$pid";
+    $result = mysqli_query($con,$sql);
+    if(mysqli_num_rows($result)==1) {       
+        $row=mysqli_fetch_assoc($result);
+        $pp=$row['passager_principal'];
+        $cn=$row['contact_number'];
+        $dd=$row['date_de_prise_en_charge'];
+        $tm=$row['Time'];
+        $pu=$row['adresse_du_pick_up'];
+        $dp=$row['adresse_de_depose'];
+        $np=$row['nb_de_passager'];
+        $op=$row['options'];
+        $dn=$row['dname'];
+        $dtn=$row['dtp_num'];
+        $vn=$row['Vehicule_num'];
+    }
+
+}
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Contacts</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <style>
+    
+  </style>
+</head>
+<body >
+<!-- Site wrapper -->
+
+
+
+    <section class="content">
+        <div class="card card-solid">
+            <div class="row">
+
+                
+
+                <div class="col-md-12">
+            
+                <table class="table  table-sm">
+                    <tr>
+                        <td style="border: bottom 0px;">
+                        <ul class="ml-4 mb-0 fa-ul text-muted">
+                        <li class="small">
+                            <img src="dist/img/logo_pdf.png" alt="" width="120px">
+                        </li>
+                        </ul>
+                        </td>
+                        <td style="border: bottom 0px;"> <h2 class="lead"><b>Bon de mission :</b> PCI1000<?= $pid ?></h2></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="border: bottom 0px;">
+                        <ul class="ml-4 mb-0 fa-ul text-muted">
+                        <li class="small"><h1 class="lead"><b>Paris Cab Limousinee</b></h1></li>
+                        <li class="small"><p class="text-muted text-sm"><b>44 Avenue Albert Sarraut 95190 <br> Goussainville <br>France</b></p></li>
+                        <li class="small"><p class="text-muted text-sm"><b>Tél.: </b>+33 660 763 235</p></li>
+                        <li class="small"><p class="text-muted text-sm"><b>Email: </b>pariscablimo@gmail.com</p></li>
+                        </ul>
+
+                        </td>
+                    </tr>
+  
+
+                    <tr>
+                        <td colspan="2">
+
+                            <table class="table table-bordered ">
+                            <tbody>
+                                <tr>
+                                    <th>Référence</th>
+                                    <td>Réservation PCI1000<?= $pid ?> du 25/09/2023</td>
+                                </tr>
+                                <tr>
+                                    <th>Date de prise en charge</th>
+                                    <td><?= $dd ?> | <?= $tm ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Adresse du pick-up</th>
+                                    <td><?= $pu ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Adresse de dépose</th>
+                                    <td><?= $dp ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Nb. de passager</th>
+                                    <td><?= $np ?> passagers</td>
+                                </tr>
+                                <tr>
+                                    <th>Passager principal</th>
+                                    <td><?= $pp ?> | <?= $cn ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Chauffeur</th>
+                                    <td><?= $dn ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Véhicule</th>
+                                    <td><?= $vn ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Options</th>
+                                    <td><?= $op ?></td>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </td>
+                    </tr>
+
+                            <!-- <tr>
+                                <td colspan="2">
+                                    <hr>
+                     
+                                    <ul class="pagination justify-content-center m-0">
+                                    <li class="small">First Plaza, 105, rue de Lourmel 75015 Paris - contact@first-plaza.fr</li>              
+                                    </ul>
+                   
+                                </td>
+                            </tr> -->
+                </table>
+      
+                    <!-- /.card -->
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+  </div>
+  <!-- /.content-wrapper -->
+
+
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+</body>
+</html>
