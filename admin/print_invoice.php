@@ -21,7 +21,9 @@ $dompdf =new Dompdf();
 // $html_file_content=file_get_contents('passenger_pdf.php');
 // $dompdf->loadHtml($html_file_content);
 
-$url = 'http://localhost/my_admin/admin/passenger_pdf.php?get_id=' . urlencode($pid);
+$url = 'http://booking.pariscablimousine.fr/admin/passenger_pdf.php?get_id=' . urlencode($pid);
+//$url = 'http://localhost/my_admin/admin/passenger_pdf.php?get_id=' . urlencode($pid);
+
 $html_file_content = file_get_contents($url);
 $dompdf->loadHtml($html_file_content);
 
