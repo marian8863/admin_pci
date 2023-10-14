@@ -72,8 +72,8 @@ $u_p = $_SESSION['user']['profile'];
                   <thead>
                   <tr>
                     <!-- <th data-visible="false">Id</th> --> 
-                    <th>Référence No.</th>
-                    <th>Passager Principal Names</th>
+                    <th>Référence</th>
+                    <th>Passager Principal Names List</th>
                     <th>Action</th>
                     <!-- <th data-visible="false">Create Date</th> -->
                   </tr>
