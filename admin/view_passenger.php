@@ -72,9 +72,9 @@ $u_p = $_SESSION['user']['profile'];
                   <thead>
                   <tr>
                     <!-- <th data-visible="false">Id</th> --> 
-                    <th>Référence No</th>
-                    <th>Passenger Name</th>
-                    <th>Action click</th>
+                    <th>Chauffeur</th>
+                    <th>Chauffeur Contact Number</th>
+                    <th>Action</th>
                     <!-- <th data-visible="false">Create Date</th> -->
                   </tr>
                   </thead>
