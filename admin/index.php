@@ -18,7 +18,7 @@ $u_p = $_SESSION['user']['profile'];
 <!--BLOCK#2 START YOUR CODE HERE -->
   <!-- Content Wrapper. Contains page content -->
   <!-- Content Wrapper. Contains page content -->
-  <?php if ($_SESSION['user']['user_type'] == 'Admin') {?>
+ 
 
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -43,19 +43,47 @@ $u_p = $_SESSION['user']['profile'];
     <section class="content">
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
+        <?php if ($_SESSION['user']['user_type'] == 'ADM') {?>
+          <?php
+            $sql = "SELECT COUNT(d_id) AS driver_totlal FROM `driver`";
+            $result = mysqli_query($con, $sql);
+            if (mysqli_num_rows($result) > 0) {
+
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $d_t = $row["driver_totlal"];
+
+                }
+            } else {
+                echo "0 results";
+            }
+            ?>
+
+          <?php
+            $sql = "SELECT COUNT(p_id) AS passenger_totlal FROM `passenger`";
+            $result = mysqli_query($con, $sql);
+            if (mysqli_num_rows($result) > 0) {
+
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $p_t = $row["passenger_totlal"];
+
+                }
+            } else {
+                echo "0 results";
+            }
+            ?>
         <div class="row">
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                <h3><?php echo $d_t; ?></h3>
 
-                <p>New Orders</p>
+                <p>Drivers Count</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -63,19 +91,19 @@ $u_p = $_SESSION['user']['profile'];
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3><?php echo $p_t; ?></h3>
 
-                <p>Bounce Rate</p>
+                <p>Passenger Count</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
+          <!-- <div class="col-lg-3 col-6">
+      
             <div class="small-box bg-warning">
               <div class="inner">
                 <h3>44</h3>
@@ -87,10 +115,10 @@ $u_p = $_SESSION['user']['profile'];
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-          </div>
+          </div> -->
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
+          <!-- <div class="col-lg-3 col-6">
+
             <div class="small-box bg-danger">
               <div class="inner">
                 <h3>65</h3>
@@ -102,10 +130,12 @@ $u_p = $_SESSION['user']['profile'];
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-          </div>
+          </div> -->
           <!-- ./col -->
         </div>
+        <?php }?>
         <!-- /.row -->
+        <?php if ($_SESSION['user']['user_type'] == 'admin') {?>
         <!-- Main row -->
         <div class="row">
           <!-- Left col -->
@@ -618,12 +648,13 @@ $u_p = $_SESSION['user']['profile'];
           </section>
           <!-- right col -->
         </div>
+        <?php }?>
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
   </div>
-  <?php }?>
+
   <!-- /.content-wrapper -->
 
   <!-- /.content-wrapper -->

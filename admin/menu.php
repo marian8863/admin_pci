@@ -58,7 +58,7 @@ $u_p = $_SESSION['user']['profile'];
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Messages Dropdown Menu -->
-      <?php if ($_SESSION['user']['user_type'] == 'Admin') {?>
+      <?php if ($_SESSION['user']['user_type'] == 'admin') {?>
 
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
@@ -171,7 +171,7 @@ $u_p = $_SESSION['user']['profile'];
           <a  href="../login.php?logout='1'"  class="dropdown-item dropdown-footer">Sign out</a>
         </div>
       </li>
-      <?php if ($_SESSION['user']['user_type'] == 'Admin') {?>
+      <?php if ($_SESSION['user']['user_type'] == 'admin') {?>
 
       <li class="nav-item dropdown">
       <a class="nav-link" tatget="_blank" href="change-password.php">
@@ -196,21 +196,21 @@ $u_p = $_SESSION['user']['profile'];
             }
             ?>
             <!--user count end-->
-            <!--Adminin  count start-->  
+            <!--adminin  count start-->  
             <?php
-            $sql = "SELECT COUNT(id) AS users_Adminin_totlal FROM `users` Where user_type='Adminin'";
+            $sql = "SELECT COUNT(id) AS users_adminin_totlal FROM `users` Where user_type='adminin'";
             $result = mysqli_query($con, $sql);
             if (mysqli_num_rows($result) > 0) {
 
                 while ($row = mysqli_fetch_assoc($result)) {
-                    $u_a_t = $row["users_Adminin_totlal"];
+                    $u_a_t = $row["users_adminin_totlal"];
 
                 }
             } else {
                 echo "0 results";
             }
             ?>
-            <!--Adminin  count end-->  
+            <!--adminin  count end-->  
             <!--user   count start-->  
             <?php
             $sql = "SELECT COUNT(id) AS users_user_totlal FROM `users` Where user_type='user'";
@@ -228,7 +228,7 @@ $u_p = $_SESSION['user']['profile'];
             <!--user   count end--> 
 
        <!-- new user -->
-      <?php if ($_SESSION['user']['user_type'] == 'Adminin') {?>
+      <?php if ($_SESSION['user']['user_type'] == 'adminin') {?>
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="fas fa-users"></i>
@@ -238,7 +238,7 @@ $u_p = $_SESSION['user']['profile'];
           <span class="dropdown-item dropdown-header">You have <?php echo $ut; ?> assest </span>
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
-            <i class="fas fa-user mr-2"></i> Adminin
+            <i class="fas fa-user mr-2"></i> adminin
             <span class="float-right text-muted text-sm"><?php echo $u_a_t ?></span>
           </a>
           <div class="dropdown-divider"></div>
@@ -265,8 +265,8 @@ $u_p = $_SESSION['user']['profile'];
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="dist/img/logo_pdf.jpg" alt="AdmininLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <a class="brand-link">
+      <img src="dist/img/logo_pdf.jpg" alt="admininLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light"> Paris Cab Limousinee </span>
     </a>
 
@@ -299,7 +299,7 @@ $u_p = $_SESSION['user']['profile'];
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <?php if ($_SESSION['user']['user_type'] == 'Admin') {?>
+          <?php if ($_SESSION['user']['user_type'] == 'admin') {?>
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -358,7 +358,7 @@ $u_p = $_SESSION['user']['profile'];
                   </p>
                 </a>
               </li>
-              <?php if ($_SESSION['user']['user_type'] == 'Admin') {?>
+              <?php if ($_SESSION['user']['user_type'] == 'admin') {?>
               <li class="nav-item">
                 <a href="feb" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -384,7 +384,7 @@ $u_p = $_SESSION['user']['profile'];
 
           </li>
 
-          <?php if ($_SESSION['user']['user_type'] == 'Admin') {?>
+          <?php if ($_SESSION['user']['user_type'] == 'admin') {?>
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -838,7 +838,7 @@ $u_p = $_SESSION['user']['profile'];
           </li>
           <li class="nav-header">MISCELLANEOUS</li>
           <li class="nav-item">
-            <a href="https://Admininlte.io/docs/3.0/" class="nav-link">
+            <a href="https://admininlte.io/docs/3.0/" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
               <p>Documentation</p>
             </a>

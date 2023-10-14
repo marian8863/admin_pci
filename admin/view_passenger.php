@@ -29,12 +29,12 @@ $u_p = $_SESSION['user']['profile'];
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">February
+              <li class="breadcrumb-item active">Passenger Detail
               <?php
                   // echo  $Sdate = new DateTime("now", new DateTimeZone('Asia/Colombo'));
-                  date_default_timezone_set('Asia/Colombo');
-                  $date = date('d-m-y h:i:s');
-                  echo $date;
+                 // date_default_timezone_set('Asia/Colombo');
+                  // $date = date('d-m-y h:i:s');
+                  // echo $date;
               ?>
               </li>
             </ol>
@@ -58,13 +58,15 @@ $u_p = $_SESSION['user']['profile'];
 
               <div class="card-body">
               <div class="row">
-                <div class="col-10">
+                <div class="col-9">
                 </div>
                 <!-- /.col -->
-                <div class="col-2">
-                    <a href="create_booking" class="btn btn-primary"> + Add Passenger</a>
+                <div class="col-3">
+                    <a href="create_booking" class="btn btn-primary btn-block"> + Add</a>
+
                 </div>
                 </div>
+                <br>
                 <table id="example1"  class="table table-bordered table-striped">
                   <thead>
                   <tr>

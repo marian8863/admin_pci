@@ -35,12 +35,16 @@ if(isset($_GET['get_id'])){
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">February
+              <li class="breadcrumb-item active">Drivers Detail
               <?php
                   // echo  $Sdate = new DateTime("now", new DateTimeZone('Asia/Colombo'));
-                  date_default_timezone_set('Asia/Colombo');
-                  $date = date('d-m-y h:i:s');
-                  echo $date;
+                  // date_default_timezone_set('UTC');
+
+                  // // Get the current date and time
+                  // $currentDateTime = date('Y-m-d H:i:s');
+                  
+                  // // Display the current date and time
+                  // echo "Current Date and Time: " . $currentDateTime;
               ?>
               </li>
             </ol>
@@ -64,13 +68,16 @@ if(isset($_GET['get_id'])){
 
               <div class="card-body">
               <div class="row">
-                <div class="col-10">
+                <div class="col-9">
                 </div>
                 <!-- /.col -->
-                <div class="col-2">
-                    <a href="create_driver" class="btn btn-primary btn-block"> + Add Driver</a>
+                <div class="col-3">
+                    <a href="create_driver" class="btn btn-primary btn-block"> + Add</a>
+
                 </div>
                 </div>
+                <br>
+                
                 <table id="example1"  class="table table-bordered table-striped">
                   <thead>
                   <tr>
