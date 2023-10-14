@@ -103,8 +103,8 @@ $u_p = $_SESSION['user']['profile'];
                         <td><?= "PCI1000".$row['p_id']?></td>
                         <td><?= $row['passager_principal']?></td>
                         <td>
-                            <a href="create_booking.php?get_id=<?= $row["p_id"]?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                            <a href="print_invoice.php?get_id=<?= $row["p_id"]?>" class="btn btn-success"><i class="fas fa-download"></i></a>
+                            <a href="create_booking.php?get_id=<?= $row["p_id"]?>" class="btn btn-info"><i class="fas fa-edit"></i></a> <br>
+                            <a href="print_invoice.php?get_id=<?= $row["p_id"]?>" class="btn btn-success"><i class="fas fa-download"></i></a> <br>
                             <button  class="btn btn-danger" data-href="?delete_id=<?=$row["p_id"]?>" data-toggle="modal" data-target="#confirm-delete-passenger"><i class="fas fa-trash"></i></button>
                         </td>
                     </tr>
