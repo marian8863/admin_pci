@@ -40,18 +40,30 @@
                         </li>
                         </ul>
                         </td>
-                        <td style="border: bottom 0px;"> <h2 class="lead"><b>Bon de mission :</b> PCI1000</h2></td>
+                        <td style="border: bottom 0px;"> <h5 class="lead"><b>Bon de mission :</b> PCI1000{{ get_id }}</h5></td>
                     </tr>
                     <tr>
                         <td colspan="2" style="border: bottom 0px;">
                         <ul class="ml-4 mb-0 fa-ul text-muted">
-                        <li class="small"><h1 class="lead"><b>Paris Cab Limousinee</b></h1></li>
-                        <li class="small"><p class="text-muted text-sm"><b>44 Avenue Albert Sarraut 95190 <br> Goussainville <br>France</b></p></li>
-                        <li class="small"><p class="text-muted text-sm"><b>Tél.: </b>+33 660 763 235</p></li>
-                        <li class="small"><p class="text-muted text-sm"><b>Email: </b>pariscablimo@gmail.com</p></li>
+                        <li class="small"><h1 class="lead"><b>paris cab limousine</b></h1></li>
+                        <li class="small"><b>44 avenue albert Sarraut <br>95190 Goussainville</b></li>
+                        <li class="small"><b>SIRET : </b>840056022</li>
+                        <li class="small"><b>TVA : </b>FR2084056022</li>
+                        <li class="small"><b>N° EVTC : </b>095180698</li>
+                        <li class="small"><b>Email: </b>pariscablimo@gmail.com</li>
+                        <li class="small"><b>Tél.: </b>+33 660 763 235</li>
                         </ul>
-
                         </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2"  style="text-align:center;border: bottom 0px;">
+                        <ul class="ml-4 mb-0 fa-ul text-muted">
+                        <li class="small"><b>SERVICE DE VOITURE DE TRANSPORT AVEC CHAUFFEUR</b></li>
+
+                        <li class="small"><b>JUSTIFICATION DE LA RESERVATION PREALABEL</b></li>
+                        </ul>
+</td>
                     </tr>
   
 
@@ -60,27 +72,28 @@
 
                             <table class="table table-bordered ">
                             <tbody>
+
                                 <tr>
                                     <th>Référence</th>
-                                    <td>Réservation PCI1000<?php if(isset($_GET['get_id'])) echo $pid ?> du 25/09/2023</td>
+                                    <td>Réservation PCI1000{{ get_id }} du 25/09/2023</td>
                                 </tr>
                                 <tr>
                                     <th>Date de prise en charge</th>
-                                    <td><?php if(isset($_GET['get_id'])) echo $dd ?> | <?php if(isset($_GET['get_id'])) echo $tm ?></td>
+                                    <td>{{ date_de_prise_en_charge }} | {{ Time }}</td>
                                 </tr>
                                 <tr>
                                     <th>Adresse du pick-up</th>
-                                    <td><?php if(isset($_GET['get_id'])) echo $pu ?>
+                                    <td>{{ adresse_du_pick_up }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Adresse de dépose</th>
-                                    <td><?php if(isset($_GET['get_id'])) echo $dp ?>
+                                    <td>{{ adresse_de_depose }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Nb. de passager</th>
-                                    <td><?php if(isset($_GET['get_id'])) echo $np ?> passagers</td>
+                                    <td>{{ nb_de_passager }} passagers</td>
                                 </tr>
                                 <tr>
                                     <th>Passager principal</th>
@@ -88,15 +101,19 @@
                                 </tr>
                                 <tr>
                                     <th>Chauffeur</th>
-                                    <td><?php if(isset($_GET['get_id'])) echo  $dn ?></td>
+                                    <td>{{ dname }}</td>
                                 </tr>
                                 <tr>
                                     <th>Véhicule</th>
-                                    <td><?php if(isset($_GET['get_id'])) echo $vn ?></td>
+                                    <td>{{ Vehicule_num }}</td>
                                 </tr>
                                 <tr>
                                     <th>Options</th>
-                                    <td><?php if(isset($_GET['get_id'])) echo $op ?></td>
+                                    <td>{{ options }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Tarif</th>
+                                    <td>{{ Tarif }} €</td>
                                 </tr>
                             </tbody>
                             </table>
@@ -122,13 +139,15 @@
         </div>
     </section>
 
-
   </div>
   <!-- /.content-wrapper -->
 
 
 <!-- ./wrapper -->
+<footer class="main-footer">
+    <strong>( Article R3120-2 du code des transport- Arrêté du 30 juillet 2013 ).</strong>
 
+  </footer>
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->

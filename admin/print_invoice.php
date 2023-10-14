@@ -15,7 +15,7 @@ if(isset($_GET['get_id'])){
     $sql="SELECT `passenger`.`passager_principal`,`passenger`.`contact_number`,
     `passenger`.`date_de_prise_en_charge`,`passenger`.`Time`,`passenger`.`adresse_du_pick_up`,
     `passenger`.`adresse_de_depose`,passenger.`nb_de_passager`,`passenger`.`options`,`driver`.`d_id`,`driver`.`dname`,
-    `driver`.`dtp_num`,`passenger`.`Vehicule_num` from driver,passenger where `driver`.d_id=`passenger`.d_id and  `passenger`.p_id=$pid";
+    `driver`.`dtp_num`,`passenger`.`Vehicule_num`,`passenger`.`Tarif` from driver,passenger where `driver`.d_id=`passenger`.d_id and  `passenger`.p_id=$pid";
     $result = mysqli_query($con,$sql);
     if(mysqli_num_rows($result)==1) {       
         $row=mysqli_fetch_assoc($result);
@@ -30,6 +30,7 @@ if(isset($_GET['get_id'])){
         $dn=$row['dname'];
         $dtn=$row['dtp_num'];
         $vn=$row['Vehicule_num'];
+        $ta=$row['Tarif'];
 
     }}
 
@@ -55,7 +56,13 @@ $dompdf->setPaper("A4", "portrait");
  */
 $html = file_get_contents("passenger_pdf.php");
 
-$html = str_replace(["{{ passager_principal }}", "{{ contact_number }}"], [$pp, $cn], $html);
+$html = str_replace(["{{ passager_principal }}", "{{ contact_number }}",
+"{{ date_de_prise_en_charge }}", "{{ Time }}",
+"{{ adresse_du_pick_up }}", "{{ adresse_de_depose }}",
+"{{ nb_de_passager }}", "{{ options }}",
+"{{ dname }}", "{{ dtp_num }}",
+"{{ Vehicule_num }}","{{ get_id }}","{{ Tarif }}"
+], [$pp, $cn,$dd, $tm,$pu, $dp,$np, $op,$dn, $dtn,$vn,$pid,$ta], $html);
 
 $dompdf->loadHtml($html);
 
@@ -63,5 +70,5 @@ $dompdf->loadHtml($html);
 
 $dompdf->render();
 
-$dompdf->stream('document',array('Attachment' =>1));
+$dompdf->stream('document',array('Attachment' =>0));
 ?>
