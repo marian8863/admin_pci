@@ -70,5 +70,5 @@ $dompdf->loadHtml($html);
 
 $dompdf->render();
 
-$dompdf->stream('document',array('Attachment' =>0));
+$dompdf->stream('document'.$pp.'.pdf',array('Attachment' =>1));
 ?>
