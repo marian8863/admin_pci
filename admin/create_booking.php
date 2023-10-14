@@ -20,7 +20,7 @@ if(isset($_GET['get_id'])){
     $sql="SELECT `passenger`.`passager_principal`,`passenger`.`contact_number`,
     `passenger`.`date_de_prise_en_charge`,`passenger`.`Time`,`passenger`.`adresse_du_pick_up`,
     `passenger`.`adresse_de_depose`,passenger.`nb_de_passager`,`passenger`.`options`,`driver`.`d_id`,
-    `driver`.`dtp_num`,`passenger`.`Vehicule_num` from driver,passenger where `driver`.d_id=`passenger`.d_id and  `passenger`.p_id=$pid";
+    `driver`.`dtp_num`,`passenger`.`Vehicule_num`,`passenger`.`Tarif` from driver,passenger where `driver`.d_id=`passenger`.d_id and  `passenger`.p_id=$pid";
     $result = mysqli_query($con,$sql);
     if(mysqli_num_rows($result)==1) {       
         $row=mysqli_fetch_assoc($result);
@@ -35,6 +35,7 @@ if(isset($_GET['get_id'])){
         $dn=$row['d_id'];
         $dtn=$row['dtp_num'];
         $vn=$row['Vehicule_num'];
+        $ta=$row['Tarif'];
     }
 
 }
@@ -60,9 +61,9 @@ if(isset($_GET['get_id'])){
               <li class="breadcrumb-item active">February
               <?php
                   // echo  $Sdate = new DateTime("now", new DateTimeZone('Asia/Colombo'));
-                  date_default_timezone_set('Asia/Colombo');
-                  $date = date('d-m-y h:i:s');
-                  echo $date;
+                  // date_default_timezone_set('Asia/Colombo');
+                  // $date = date('d-m-y h:i:s');
+                  // echo $date;
               ?>
               </li>
             </ol>
@@ -194,6 +195,13 @@ if(isset($_GET['get_id'])){
                         <input type="text" class="form-control" placeholder="Enter ..." value="<?php if(isset($_GET['get_id'])){ echo $vn;}?>"name="Vehicule_num">
                       </div>
                     </div>
+                    <div class="col-sm-6">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label>Tarif</label>
+                        <input type="text" class="form-control" placeholder="Enter ..." value="<?php if(isset($_GET['get_id'])){ echo $ta;}?>"name="Tarif">
+                      </div>
+                    </div>
                   </div>
                   <div class="row">
                     <div class="col-sm-3">
@@ -241,7 +249,8 @@ if(isset($_POST['add'])){
     !empty($_POST['nb_de_passager'])&& 
     !empty($_POST['options'])&& 
     !empty($_POST['d_id'])&&
-    !empty($_POST['Vehicule_num'])){
+    !empty($_POST['Vehicule_num'])&&
+    !empty($_POST['Tarif'])){
         $passager_principal=$_POST['passager_principal'];
         $contact_number=$_POST['contact_number'];
         $date_de_prise_en_charge=$_POST['date_de_prise_en_charge'];
@@ -252,11 +261,11 @@ if(isset($_POST['add'])){
         $options=$_POST['options'];
         $d_id=$_POST['d_id'];
         $Vehicule_num=$_POST['Vehicule_num'];
-     
+        $Tarif=$_POST['Tarif'];
 
   
-        $sql="INSERT INTO `passenger` (`passager_principal`,`contact_number`,`date_de_prise_en_charge`,`Time`,`adresse_du_pick_up`,`adresse_de_depose`,`nb_de_passager`,`options`,`d_id`,`Vehicule_num`) 
-        values('$passager_principal','$contact_number','$date_de_prise_en_charge','$Time','$adresse_du_pick_up','$adresse_de_depose','$nb_de_passager','$options','$d_id','$Vehicule_num')";
+        $sql="INSERT INTO `passenger` (`passager_principal`,`contact_number`,`date_de_prise_en_charge`,`Time`,`adresse_du_pick_up`,`adresse_de_depose`,`nb_de_passager`,`options`,`d_id`,`Vehicule_num`,`Tarif`) 
+        values('$passager_principal','$contact_number','$date_de_prise_en_charge','$Time','$adresse_du_pick_up','$adresse_de_depose','$nb_de_passager','$options','$d_id','$Vehicule_num','$Tarif')";
         if(mysqli_query($con,$sql)){
             //$message ="<h5>New record created successfully</h5>";
           echo '<script>';
@@ -296,7 +305,8 @@ if(isset($_POST['edit'])){
   !empty($_POST['nb_de_passager'])&& 
   !empty($_POST['options'])&& 
   !empty($_POST['d_id'])&&
-  !empty($_POST['Vehicule_num'])){
+  !empty($_POST['Vehicule_num'])&&
+  !empty($_POST['Tarif'])){
 
     $passager_principal=$_POST['passager_principal'];
     $contact_number=$_POST['contact_number'];
@@ -308,6 +318,7 @@ if(isset($_POST['edit'])){
     $options=$_POST['options'];
     $d_id=$_POST['d_id'];
     $Vehicule_num=$_POST['Vehicule_num'];
+    $Tarif=$_POST['Tarif'];
 
 
   $sql='UPDATE  `passenger` set 
@@ -320,7 +331,8 @@ if(isset($_POST['edit'])){
   `nb_de_passager` ="'.$nb_de_passager.'",
   `options`="'.$options.'",
   `d_id`="'.$d_id.'",
-  `Vehicule_num`="'.$Vehicule_num.'"
+  `Vehicule_num`="'.$Vehicule_num.'",
+  `Tarif`="'.$Tarif.'"
 
   where `p_id`="'.$pid.'"';
 
