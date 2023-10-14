@@ -124,6 +124,15 @@ $('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
    });
+   $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
 </script>
 
 <script>
