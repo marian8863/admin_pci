@@ -67,6 +67,7 @@ $u_p = $_SESSION['user']['profile'];
                 </div>
                 </div>
                 <br>
+
                 <table id="example2"  class="table table-bordered table-striped">
                   <thead>
                   <tr>
@@ -92,7 +93,7 @@ $u_p = $_SESSION['user']['profile'];
                     ?>
                   <tbody>
                
-                    <?php  
+                  <?php  
                     $sql="SELECT * FROM passenger";         
                     $res=$con->query($sql);
                     while($row=$res->fetch_assoc()){    
