@@ -71,9 +71,9 @@ $u_p = $_SESSION['user']['profile'];
                 <table id="example2"  class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <!-- <th data-visible="false">Id</th> -->
-                    <th>Référence</th>
-                    <th>Passenger</th>
+                    <!-- <th data-visible="false">Id</th> --> 
+                    <th>Référence No</th>
+                    <th>Passenger Name</th>
                     <th>Action</th>
                     <!-- <th data-visible="false">Create Date</th> -->
                   </tr>
@@ -104,6 +104,7 @@ $u_p = $_SESSION['user']['profile'];
                         <td><?= $row['passager_principal']?></td>
                         <td>
                             <a href="create_booking.php?get_id=<?= $row["p_id"]?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
+                            <a href="print_invoice.php?get_id=<?= $row["p_id"]?>" class="btn btn-success"><i class="fas fa-download"></i></a>
                             <button  class="btn btn-danger" data-href="?delete_id=<?=$row["p_id"]?>" data-toggle="modal" data-target="#confirm-delete-passenger"><i class="fas fa-trash"></i></button>
                         </td>
                     </tr>
