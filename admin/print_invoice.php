@@ -70,5 +70,5 @@ $dompdf->loadHtml($html);
 
 $dompdf->render();
 
-$dompdf->stream('document'.$pp.'.pdf',array('Attachment' =>1));
+$dompdf->stream('PCI-document-'.$pp.'.pdf',array('Attachment' =>0));
 ?>
