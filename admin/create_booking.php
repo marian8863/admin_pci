@@ -10,7 +10,7 @@ $u_t = $_SESSION['user']['user_type'];
 $u_p = $_SESSION['user']['profile'];
 
 
-$vn=$dn=$tdm=$sq=$psq=$op_q=$tdm=null;
+$vn=$dn=$sq=$psq=$op_q=$tdm=null;
 ?>
 <!--END DON'T CHANGE THE ORDER-->
 <?php
@@ -147,7 +147,7 @@ if(isset($_GET['get_id'])){
                       <!-- text input -->
                       <div class="form-group">
                         <label>Type de mission</label>
-                        <select class="form-control select2" style="width: 100%;" name="Type" id="Type"  required>
+                        <select class="form-control select2" style="width: 100%;" name="Type" id="Type"  >
                         <option value="null" selected disabled >---- Select the Type ---- </option>
                         <?php
                         $sql="select * from `Type_mission`";
@@ -268,7 +268,7 @@ if(isset($_GET['get_id'])){
                       <!-- text input -->
                       <div class="form-group">
                         <label>Chauffeur</label>
-                        <select class="form-control select2" style="width: 100%;" name="d_id" id="didx"  onchange="showTelNum(this.value)" required>
+                        <select class="form-control select2" style="width: 100%;" name="d_id" id="didx"  onchange="showTelNum(this.value)" >
                         <option value="null" selected disabled >---- Select the Chauffeur ---- </option>
                         <?php
                         $sql="select * from `driver`";
