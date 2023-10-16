@@ -10,7 +10,7 @@ $u_t = $_SESSION['user']['user_type'];
 $u_p = $_SESSION['user']['profile'];
 
 
-$vn=$dn=$tdm=$sq=$psq=$op_q=null;
+$vn=$dn=$tdm=$sq=$psq=$op_q=$tdm=null;
 ?>
 <!--END DON'T CHANGE THE ORDER-->
 <?php
