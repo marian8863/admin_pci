@@ -71,6 +71,20 @@ $u_p = $_SESSION['user']['profile'];
                 echo "0 results";
             }
             ?>
+
+            <?php
+            $sql = "SELECT COUNT(v_id) AS vehicule_totlal FROM `vehicule`";
+            $result = mysqli_query($con, $sql);
+            if (mysqli_num_rows($result) > 0) {
+
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $v_t = $row["vehicule_totlal"];
+
+                }
+            } else {
+                echo "0 results";
+            }
+            ?>
         <div class="row">
           <div class="col-lg-3 col-6">
             <!-- small box -->
@@ -94,6 +108,21 @@ $u_p = $_SESSION['user']['profile'];
                 <h3><?php echo $p_t; ?></h3>
 
                 <p>Passenger Count</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3><?php echo $v_t; ?></h3>
+
+                <p>Vehicule Count</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
