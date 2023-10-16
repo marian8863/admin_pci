@@ -112,6 +112,11 @@ else{
   padding: 10px;
   text-align: center;
 }
+
+
+#type_sho {
+  display: none;
+}
   </style>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

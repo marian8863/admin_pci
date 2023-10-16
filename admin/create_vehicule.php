@@ -15,13 +15,12 @@ $u_p = $_SESSION['user']['profile'];
 <?php
 
 if(isset($_GET['get_id'])){
-    $did=$_GET['get_id'];
-    $sql="SELECT dname,dtp_num from driver where d_id='$did'";
+    $vid=$_GET['get_id'];
+    $sql="SELECT Vehicule_num from vehicule where v_id='$vid'";
     $result = mysqli_query($con,$sql);
     if(mysqli_num_rows($result)==1) {       
         $row=mysqli_fetch_assoc($result);
-        $dn=$row['dname'];
-        $dtp=$row['dtp_num'];
+        $vn=$row['Vehicule_num'];
     }
 }
 ?>
@@ -36,17 +35,17 @@ if(isset($_GET['get_id'])){
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Drivers Detail</h1>
+            <h1 class="m-0 text-dark">Vehicule Detail</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">February
+              <li class="breadcrumb-item active">Vehicule
               <?php
                   // echo  $Sdate = new DateTime("now", new DateTimeZone('Asia/Colombo'));
-                  date_default_timezone_set('Asia/Colombo');
-                  $date = date('d-m-y h:i:s');
-                  echo $date;
+                //   date_default_timezone_set('Asia/Colombo');
+                //   $date = date('d-m-y h:i:s');
+                //   echo $date;
               ?>
               </li>
             </ol>
@@ -64,11 +63,11 @@ if(isset($_GET['get_id'])){
                 <?php
                 if(isset($_GET['get_id'])){
                 ?>
-                    <h3 class="card-title">Edit Drivers</h3>
+                    <h3 class="card-title">Edit Vehicule</h3>
                 <?php
                 }else{
                 ?>
-                    <h3 class="card-title">Create Drivers</h3>
+                    <h3 class="card-title">Create Vehicule</h3>
                 <?php
                 }
                 ?>
@@ -80,15 +79,8 @@ if(isset($_GET['get_id'])){
                     <div class="col-sm-6">
                       <!-- text input -->
                       <div class="form-group">
-                        <label>Chauffeur</label>
-                        <input type="text" class="form-control" name="dname" value="<?php if(isset($_GET['get_id'])){ echo $dn;}?>" placeholder="Enter ...">
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <!-- text input -->
-                      <div class="form-group">
-                        <label>Chauffeur Contact Number</label>
-                        <input type="text" class="form-control" name="dtp_num" value="<?php if(isset($_GET['get_id'])){ echo $dtp;}?>" placeholder="Enter ...">
+                        <label>Vehicule Name</label>
+                        <input type="text" class="form-control" name="Vehicule_num" value="<?php if(isset($_GET['get_id'])){ echo $vn;}?>" placeholder="Enter ...">
                       </div>
                     </div>
                   </div>
@@ -132,12 +124,10 @@ if(isset($_GET['get_id'])){
 <?php
 if(isset($_POST['add'])){
 
-    if(!empty($_POST['dname'])&& 
-    !empty($_POST['dtp_num'])){
-        $dname=$_POST['dname'];
-        $dtp_num=$_POST['dtp_num'];
+    if(!empty($_POST['Vehicule_num'])){
+        $Vehicule_num=$_POST['Vehicule_num'];
   
-        $sql="INSERT INTO `driver` (`dname`,`dtp_num`) values('$dname','$dtp_num')";
+        $sql="INSERT INTO `vehicule` (`Vehicule_num`) values('$Vehicule_num')";
         if(mysqli_query($con,$sql)){
             //$message ="<h5>New record created successfully</h5>";
           echo '<script>';
@@ -146,13 +136,13 @@ if(isset($_POST['add'])){
              position: "top-end",
          
              icon: "success",
-             title: "Your Driver has been saved",
+             title: "Your vehicule has been saved",
              showConfirmButton: false,
             
              timer: 1500
            }).then(function() {
              // Redirect the user
-             window.location.href = "view_drivers";
+             window.location.href = "view_vehicule";
          
              });
           ';
@@ -168,17 +158,13 @@ if(isset($_POST['add'])){
 
 <?php
 if(isset($_POST['edit'])){
-    if(!empty($_POST['dname'])&& 
-    !empty($_POST['dtp_num'])){
-    $d_id=$_GET['get_id'];
-    $dname=$_POST['dname'];
-    $dtp_num=$_POST['dtp_num'];
+    if(!empty($_POST['Vehicule_num'])){
+        $Vehicule_num=$_POST['Vehicule_num'];
 
-  $sql='UPDATE  `driver`
-  set `dname` ="'.$dname.'",
-  `dtp_num`="'.$dtp_num.'"
+  $sql='UPDATE  `vehicule`
+  set `Vehicule_num` ="'.$Vehicule_num.'"
 
-  where `d_id`="'.$did.'"';
+  where `v_id`="'.$vid.'"';
   if(mysqli_query($con,$sql)){
    
     // $message ="<h4 class='text-success' >Update successfully</h4>";
@@ -188,13 +174,13 @@ if(isset($_POST['edit'])){
        position: "top-end",
    
        icon: "success",
-       title: "Your Driver has been updated",
+       title: "Your vehicule has been updated",
        showConfirmButton: false,
       
        timer: 1500
      }).then(function() {
        // Redirect the user
-       window.location.href = "view_drivers";
+       window.location.href = "view_vehicule";
    
        });
     ';

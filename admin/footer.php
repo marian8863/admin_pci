@@ -205,7 +205,37 @@ $('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href
 </script>
 
 
+<script type="text/javascript">
+    function EnableType() {
+        var typedesc = document.getElementById("select_quesntion");
+        var typedescrib = document.getElementById("typedescrib");
+        typedescrib.disabled = typedesc.checked ? false : true;
+        typedescrib.value="";
+        if (!typedescrib.disabled) {
+          typedescrib.focus();
+        }
+    }
 
+    function EnablePassengerType() {
+        var passengerdesc = document.getElementById("passengerdesc");
+        var passengerdescrib = document.getElementById("passengerdescrib");
+        passengerdescrib.disabled = passengerdesc.checked ? false : true;
+        passengerdescrib.value="";
+        if (!passengerdescrib.disabled) {
+          passengerdescrib.focus();
+        }
+    }
+
+    function EnableOptions() {
+        var Options = document.getElementById("op_question");
+        var OptionsEdit = document.getElementById("OptionsEdit");
+        OptionsEdit.disabled = Options.checked ? false : true;
+        OptionsEdit.value="";
+        if (!OptionsEdit.disabled) {
+          OptionsEdit.focus();
+        }
+    }
+</script>
 
 </body>
 </html>

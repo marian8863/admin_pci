@@ -24,12 +24,12 @@ $u_p = $_SESSION['user']['profile'];
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Passenger Detail</h1>
+            <h1 class="m-0 text-dark">Jobs Detail</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Passenger Detail
+              <li class="breadcrumb-item active">Jobs Detail
               <?php
                   // echo  $Sdate = new DateTime("now", new DateTimeZone('Asia/Colombo'));
                  // date_default_timezone_set('Asia/Colombo');
@@ -73,7 +73,11 @@ $u_p = $_SESSION['user']['profile'];
                   <tr>
                     <!-- <th data-visible="false">Id</th> --> 
                     <th>Référence</th>
-                    <th>Passager Principal Names List</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Type de Mission</th>
+                    <th>Passager Principal</th>
+                    <th>Driver</th>
                     <th>Action</th>
                     <!-- <th data-visible="false">Create Date</th> -->
                   </tr>
@@ -82,29 +86,73 @@ $u_p = $_SESSION['user']['profile'];
                     if(isset($_GET['delete_id']))
                     {                
                         $p_id = $_GET['delete_id'];
+                        // Start a transaction
+                        $con->begin_transaction();
 
-                        $sql = "DELETE from passenger where p_id = $p_id";
+                        // Define an array of table names
+                        $tables = ["passenger", "option_desc", "passenger_description", "type_de_mission_desc"];
 
-                        if(mysqli_query($con,$sql))
-                        { }
-                        else
-                        {}
-                    }
+                        $success = true;
+
+                        // Delete records from each table
+                        foreach ($tables as $table) {
+                            $sql = "DELETE FROM $table WHERE p_id = $p_id";
+                            if ($con->query($sql) !== TRUE) {
+                                $success = false;
+                                break;
+                            }
+                        }
+
+                        if ($success) {
+                            // All deletes were successful
+                            $con->commit(); // Commit the transaction
+                            echo '<script>';
+                            echo '
+                            Swal.fire({
+                               position: "top-end",
+                           
+                               icon: "success",
+                               title: "Your Data Deleted!",
+                               showConfirmButton: false,
+                              
+                               timer: 1500
+                             }).then(function() {
+                               // Redirect the user
+                               window.location.href = "view_passenger";
+                           
+                               });
+                            ';
+                            echo '</script>';
+                        } else {
+                            // At least one delete operation failed, so we need to roll back the transaction
+                            $con->rollback();
+                            echo "Error deleting records from one or more tables: " . $con->error;
+                        }
+
+                      
+                      }
+
                     ?>
                   <tbody>
                
                   <?php  
-                    $sql="SELECT * FROM passenger";         
+                    $sql="SELECT passenger.`p_id`,passenger.`passager_principal`,passenger.`date_de_prise_en_charge`,passenger.`Time`,type_mission.`type_m`,driver.`dname` 
+                    FROM passenger ,type_mission,driver where passenger.`Type_de_mission`=type_mission.`tm_id` and passenger.`d_id`=driver.`d_id`";         
                     $res=$con->query($sql);
                     while($row=$res->fetch_assoc()){    
                             
                     ?>
                     <tr>
-                        <td><?= "PCI1000".$row['p_id']?></td>
+                        <td><?= "PCL1000".$row['p_id']?></td>
+                        <td><?= $row['date_de_prise_en_charge']?></td>
+                        <td><?= $row['Time']?></td>
+                        <td><?= $row['type_m']?></td>
                         <td><?= $row['passager_principal']?></td>
+                        <td><?= $row['dname']?></td>
+                        <!-- print_invoice.php?get_id=<? //=$row["p_id"]?> -->
                         <td>
                             <a href="create_booking.php?get_id=<?= $row["p_id"]?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                            <a href="print_invoice.php?get_id=<?= $row["p_id"]?>" class="btn btn-success"><i class="fas fa-download"></i></a> 
+                            <a href="" class="btn btn-success"><i class="fas fa-download"></i></a> 
                             <button  class="btn btn-danger" data-href="?delete_id=<?=$row["p_id"]?>" data-toggle="modal" data-target="#confirm-delete-passenger"><i class="fas fa-trash"></i></button>
                         </td>
                     </tr>

@@ -358,6 +358,15 @@ $u_p = $_SESSION['user']['profile'];
                   </p>
                 </a>
               </li>
+
+              <li class="nav-item">
+                <a href="view_vehicule" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>
+                    View vehicule
+                  </p>
+                </a>
+              </li>
               <?php if ($_SESSION['user']['user_type'] == 'admin') {?>
               <li class="nav-item">
                 <a href="feb" class="nav-link">
