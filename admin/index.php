@@ -37,6 +37,7 @@ $u_p = $_SESSION['user']['profile'];
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
+    
     <!-- /.content-header -->
 
     <!-- Main content -->
