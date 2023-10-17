@@ -150,13 +150,13 @@ if(isset($_GET['get_id'])){
                         <select class="form-control Type_select" style="width: 100%;" name="tm_id" id="tm_idx"  onchange="showTelNum(this.value)" >
                         <option value="null" selected disabled >---- Select the Type ---- </option>
                         <?php
-                        $sql="select * from `driver`";
+                        $sql="select * from `type_mission`";
                         $result = mysqli_query($con,$sql);
                         if (mysqli_num_rows($result) > 0 ) {
                         while($row=mysqli_fetch_assoc($result)){
-                            echo '<option  value="'.$row["d_id"].'" required';
-                            if($row["d_id"]== $dn) echo ' selected';
-                            echo '>'.$row["dname"].'</option>';
+                            echo '<option  value="'.$row["tm_id"].'" required';
+                            if($row["tm_id"]== $tdm) echo ' selected';
+                            echo '>'.$row["type_m"].'</option>';
                         }}   
                         ?>
                         </select>
