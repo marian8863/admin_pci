@@ -62,7 +62,7 @@ $u_p = $_SESSION['user']['profile'];
                 </div>
                 <!-- /.col -->
                 <div class="col-3">
-                    <a href="create_booking" class="btn btn-primary btn-block"> + Add</a>
+                    <!-- <a href="create_booking" class="btn btn-primary btn-block"> + Add</a> -->
 
                 </div>
                 </div>
@@ -82,83 +82,7 @@ $u_p = $_SESSION['user']['profile'];
                     <!-- <th data-visible="false">Create Date</th> -->
                   </tr>
                   </thead>
-                  <?php
-                    if(isset($_GET['delete_id']))
-                    {                
-                        $p_id = $_GET['delete_id'];
-                        // Start a transaction
-                        $con->begin_transaction();
-
-                        // Define an array of table names
-                        $tables = ["passenger", "option_desc", "passenger_description", "type_de_mission_desc"];
-
-                        $success = true;
-
-                        // Delete records from each table
-                        foreach ($tables as $table) {
-                            $sql = "DELETE FROM $table WHERE p_id = $p_id";
-                            if ($con->query($sql) !== TRUE) {
-                                $success = false;
-                                break;
-                            }
-                        }
-
-                        if ($success) {
-                            // All deletes were successful
-                            $con->commit(); // Commit the transaction
-                            echo '<script>';
-                            echo '
-                            Swal.fire({
-                               position: "top-end",
-                           
-                               icon: "success",
-                               title: "Your Data Deleted!",
-                               showConfirmButton: false,
-                              
-                               timer: 1500
-                             }).then(function() {
-                               // Redirect the user
-                               window.location.href = "view_passenger";
-                           
-                               });
-                            ';
-                            echo '</script>';
-                        } else {
-                            // At least one delete operation failed, so we need to roll back the transaction
-                            $con->rollback();
-                            echo "Error deleting records from one or more tables: " . $con->error;
-                        }
-
-                      
-                      }
-
-                    ?>
-                  <tbody>
                
-                  <?php  
-                    $sql="SELECT passenger.`p_id`,passenger.`passager_principal`,passenger.`date_de_prise_en_charge`,passenger.`Time`,type_mission.`type_m`,driver.`dname` 
-                    FROM passenger ,type_mission,driver where passenger.`Type_de_mission`=type_mission.`tm_id` and passenger.`d_id`=driver.`d_id`";         
-                    $res=$con->query($sql);
-                    while($row=$res->fetch_assoc()){    
-                            
-                    ?>
-                    <tr>
-                        <td><?= "PCL1000".$row['p_id']?></td>
-                        <td><?= $row['date_de_prise_en_charge']?></td>
-                        <td><?= $row['Time']?></td>
-                        <td><?= $row['type_m']?></td>
-                        <td><?= $row['passager_principal']?></td>
-                        <td><?= $row['dname']?></td>
-                        <!-- print_invoice.php?get_id=<? //=$row["p_id"]?> -->
-                        <td>
-                            <a href="create_booking.php?get_id=<?= $row["p_id"]?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                            <a href="" class="btn btn-success"><i class="fas fa-download"></i></a> 
-                            <button  class="btn btn-danger" data-href="?delete_id=<?=$row["p_id"]?>" data-toggle="modal" data-target="#confirm-delete-passenger"><i class="fas fa-trash"></i></button>
-                        </td>
-                    </tr>
-                    <?php } ?>
-                  
-                  </tbody>
                   </tfoot>
                 </table>
   
