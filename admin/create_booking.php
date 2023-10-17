@@ -147,7 +147,7 @@ if(isset($_GET['get_id'])){
                       <!-- text input -->
                       <div class="form-group">
                         <label>Type de mission</label>
-                        <select class="form-control select2" style="width: 100%;" name="Type" id="Type"  >
+                        <select class="form-control Type_select" style="width: 100%;" name="Type" id="Type"  >
                         <option value="null" selected disabled >---- Select the Type ---- </option>
                         <?php
                         $sql="select * from `Type_mission`";
@@ -268,7 +268,7 @@ if(isset($_GET['get_id'])){
                       <!-- text input -->
                       <div class="form-group">
                         <label>Chauffeur</label>
-                        <select class="form-control select2" style="width: 100%;" name="d_id" id="didx"  onchange="showTelNum(this.value)" >
+                        <select class="form-control Chauffeur_select" style="width: 100%;" name="d_id" id="didx"  onchange="showTelNum(this.value)" >
                         <option value="null" selected disabled >---- Select the Chauffeur ---- </option>
                         <?php
                         $sql="select * from `driver`";
@@ -297,7 +297,7 @@ if(isset($_GET['get_id'])){
                       <!-- text input -->
                       <div class="form-group">
                         <label>Véhicule</label>
-                        <select class="form-control select2" style="width: 100%;" name="Vehicule_num" id="vidx" value="<?php if(isset($_GET['get_id'])){ echo $vn;}?>" required>
+                        <select class="form-control Vehicule_select" style="width: 100%;" name="Vehicule_num" id="vidx" value="<?php if(isset($_GET['get_id'])){ echo $vn;}?>" required>
                         <option value="null" selected disabled >---- Select the Véhicule ---- </option>
                         <?php
                         $sql="select * from `vehicule`";

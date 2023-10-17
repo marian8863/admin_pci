@@ -139,10 +139,15 @@ $('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href
   $(function () {
 
 
-    //Initialize Select2 Elements
-    $('.select2bs4').select2({
-      theme: 'bootstrap4'
-    })
+  //Initialize Select2 Elements
+  $('.Vehicule_select').select2()
+
+  //Initialize Select2 Elements
+  $('.Chauffeur_select').select2()
+
+  //Initialize Select2 Elements
+  $('.Type_select').select2()
+
 
 
   });
