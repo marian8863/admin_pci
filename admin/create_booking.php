@@ -147,20 +147,17 @@ if(isset($_GET['get_id'])){
                       <!-- text input -->
                       <div class="form-group">
                         <label>Type de mission</label>
-                        <select class="form-control Type_select" style="width: 100%;" name="tm_id" id="tm_idx">
+                        <select class="form-control Type_select" style="width: 100%;" name="tm_id" id="tm_idx"  onchange="showTelNum(this.value)" >
                         <option value="null" selected disabled >---- Select the Type ---- </option>
                         <?php
-                        $sql="select * from `Type_mission`";
+                        $sql="select * from `driver`";
                         $result = mysqli_query($con,$sql);
                         if (mysqli_num_rows($result) > 0 ) {
                         while($row=mysqli_fetch_assoc($result)){
-                            echo '<option  value="'.$row["tm_id"].'" required';
-                            if($row["tm_id"]== $tdm) echo ' selected';
-                            echo '>'.$row["type_m"].'</option>';
-                        }}else{
-                          echo "Error :-".$sql.
-                          "<br>"  .mysqli_error($con);
-                        }  
+                            echo '<option  value="'.$row["d_id"].'" required';
+                            if($row["d_id"]== $dn) echo ' selected';
+                            echo '>'.$row["dname"].'</option>';
+                        }}   
                         ?>
                         </select>
                       </div>
@@ -266,7 +263,35 @@ if(isset($_GET['get_id'])){
                     </div>
                   </div>
 
-              
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label>Chauffeur</label>
+                        <select class="form-control Chauffeur_select" style="width: 100%;" name="d_id" id="didx"  onchange="showTelNum(this.value)" >
+                        <option value="null" selected disabled >---- Select the Chauffeur ---- </option>
+                        <?php
+                        $sql="select * from `driver`";
+                        $result = mysqli_query($con,$sql);
+                        if (mysqli_num_rows($result) > 0 ) {
+                        while($row=mysqli_fetch_assoc($result)){
+                            echo '<option  value="'.$row["d_id"].'" required';
+                            if($row["d_id"]== $dn) echo ' selected';
+                            echo '>'.$row["dname"].'</option>';
+                        }}   
+                        ?>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label>Chauffeur Contact Number</label>
+                        <select class="form-control select2" style="width: 100%;" id="tel_num" name="tel_id" disabled="disabled" required>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
                   <div class="row">
                     <div class="col-sm-6">
                       <!-- text input -->
