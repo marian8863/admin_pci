@@ -427,10 +427,12 @@ if(isset($_POST['add'])){
         $tm_id=$_POST['tm_id'];
         $whogiven=$_POST['whogiven'];
 
-
-        $sql="INSERT INTO `passenger` (`passager_principal`,`contact_number`,`date_de_prise_en_charge`,`Time`,`adresse_du_pick_up`,`adresse_de_depose`,`nb_de_passager`,`d_id`,`Vehicule_num`,`Tarif`,`tm_id`,`whogiven`) 
-        values('$passager_principal','$contact_number','$date_de_prise_en_charge','$Time','$adresse_du_pick_up','$adresse_de_depose','$nb_de_passager','$d_id','$Vehicule_num','$Tarif','$tm_id','$whogiven')";
+        $sql='INSERT INTO `passenger` (`passager_principal`,`contact_number`,`date_de_prise_en_charge`,`Time`,`adresse_du_pick_up`,`adresse_de_depose`,`nb_de_passager`,`d_id`,`Vehicule_num`,`Tarif`,`tm_id`,`whogiven`) 
+        values("'.$passager_principal.'","'.$contact_number.'","'.$date_de_prise_en_charge.'","'.$Time.'","'.$adresse_du_pick_up.'","'.$adresse_de_depose.'","'.$nb_de_passager.'","'.$d_id.'","'.$Vehicule_num.'","'.$Tarif.'","'.$tm_id.'","'.$whogiven.'")';
         if(mysqli_query($con,$sql)){
+        // $sql="INSERT INTO `passenger` (`passager_principal`,`contact_number`,`date_de_prise_en_charge`,`Time`,`adresse_du_pick_up`,`adresse_de_depose`,`nb_de_passager`,`d_id`,`Vehicule_num`,`Tarif`,`tm_id`,`whogiven`) 
+        // values('$passager_principal','$contact_number','$date_de_prise_en_charge','$Time','$adresse_du_pick_up','$adresse_de_depose','$nb_de_passager','$d_id','$Vehicule_num','$Tarif','$tm_id','$whogiven')";
+        // if(mysqli_query($con,$sql)){
             //$message ="<h5>New record created successfully</h5>";
           echo '<script>';
           echo '
