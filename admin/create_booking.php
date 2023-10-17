@@ -147,7 +147,7 @@ if(isset($_GET['get_id'])){
                       <!-- text input -->
                       <div class="form-group">
                         <label>Type de mission</label>
-                        <select class="form-control Type_select" style="width: 100%;" name="tm_id" id="tm_id">
+                        <select class="form-control Type_select" style="width: 100%;" name="tm_id" id="tm_idx">
                         <option value="null" selected disabled >---- Select the Type ---- </option>
                         <?php
                         $sql="select * from `Type_mission`";
@@ -157,7 +157,10 @@ if(isset($_GET['get_id'])){
                             echo '<option  value="'.$row["tm_id"].'" required';
                             if($row["tm_id"]== $tdm) echo ' selected';
                             echo '>'.$row["type_m"].'</option>';
-                        }}   
+                        }}else{
+                          echo "Error :-".$sql.
+                          "<br>"  .mysqli_error($con);
+                        }  
                         ?>
                         </select>
                       </div>
