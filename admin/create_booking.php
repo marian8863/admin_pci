@@ -147,7 +147,7 @@ if(isset($_GET['get_id'])){
                       <!-- text input -->
                       <div class="form-group">
                         <label>Type de mission</label>
-                        <select class="form-control Type_select" style="width: 100%;" name="tm_id" id="tm_idx"  onchange="showTelNum(this.value)" >
+                        <select class="form-control Type_select" style="width: 100%;" name="tm_id" id="tm_idx">
                         <option value="null" selected disabled >---- Select the Type ---- </option>
                         <?php
                         $sql="select * from `type_mission`";
