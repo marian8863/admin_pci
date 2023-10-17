@@ -139,8 +139,7 @@ $('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href
   $(function () {
 
 
-
-  $('.Type_select').select2({
+    $('.Type_select').select2({
       theme: 'bootstrap4'
     })
 
