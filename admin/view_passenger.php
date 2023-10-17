@@ -137,7 +137,7 @@ $u_p = $_SESSION['user']['profile'];
                
                   <?php  
                     $sql="SELECT passenger.`p_id`,passenger.`passager_principal`,passenger.`date_de_prise_en_charge`,passenger.`Time`,type_mission.`type_m`,driver.`dname` 
-                    FROM passenger ,type_mission,driver where passenger.`Type_de_mission`=type_mission.`tm_id` and passenger.`d_id`=driver.`d_id`";         
+                    FROM passenger ,type_mission,driver where passenger.`tm_id`=type_mission.`tm_id` and passenger.`d_id`=driver.`d_id`";         
                     $res=$con->query($sql);
                     while($row=$res->fetch_assoc()){    
                             

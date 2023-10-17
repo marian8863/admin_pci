@@ -18,13 +18,13 @@ $vn=$dn=$sq=$psq=$op_q=$tdm=null;
 if(isset($_GET['get_id'])){
   $pid=$_GET['get_id'];
   $sql="SELECT passenger.passager_principal,passenger.contact_number,passenger.date_de_prise_en_charge,passenger.Time,passenger.adresse_du_pick_up,
-  passenger.adresse_de_depose,passenger.nb_de_passager,passenger.d_id,passenger.Vehicule_num,passenger.Tarif,passenger.Type_de_mission,passenger.whogiven,option_desc.op_desc,option_desc.op_question,passenger_description.passenger_select_quesntion,
+  passenger.adresse_de_depose,passenger.nb_de_passager,passenger.d_id,passenger.Vehicule_num,passenger.Tarif,passenger.tm_id,passenger.whogiven,option_desc.op_desc,option_desc.op_question,passenger_description.passenger_select_quesntion,
   passenger_description.passenger_select_desc,type_de_mission_desc.type_desc,type_de_mission_desc.select_quesntion,driver.dname,driver.dtp_num,type_mission.type_m
   
   
   from passenger ,option_desc,passenger_description ,type_de_mission_desc,driver,type_mission
   
-  WHERE passenger.p_id=option_desc.p_id and passenger.p_id=passenger_description.p_id and passenger.p_id=type_de_mission_desc.p_id and passenger.Type_de_mission=type_mission.tm_id and passenger.d_id=driver.d_id and 
+  WHERE passenger.p_id=option_desc.p_id and passenger.p_id=passenger_description.p_id and passenger.p_id=type_de_mission_desc.p_id and passenger.tm_id=type_mission.tm_id and passenger.d_id=driver.d_id and 
   passenger.p_id=$pid";
     $result = mysqli_query($con,$sql);
     if(mysqli_num_rows($result)==1) {       
@@ -41,7 +41,7 @@ if(isset($_GET['get_id'])){
         $vn=$row['Vehicule_num'];
         $ta=$row['Tarif'];
         $op_d=$row['op_desc'];
-        $tdm=$row['Type_de_mission'];
+        $tdm=$row['tm_id'];
         $op_q=$row['op_question'];
         $psq=$row['passenger_select_quesntion'];
         $psd=$row['passenger_select_desc'];
@@ -90,7 +90,305 @@ if(isset($_GET['get_id'])){
 
   <!-- Main content -->
                   
+    <section class="content">
+        <div class="card">
+            <div class="card-header">
+                <?php
+                if(isset($_GET['get_id'])){
+                ?>
+                    <h3 class="card-title">Edit Passenger</h3>
+                <?php
+                }else{
+                ?>
+                <h3 class="card-title">Create Passenger</h3>
+                <?php
+                }
+                ?>
+            </div>
+      
+                <!-- /.card-header -->
+                <div class="card-body">
+                <form action="" method="POST"> 
+                 <div class="row">
+                    <div class="col-sm-6">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label>Passager principal</label>
+                        <input type="text" class="form-control" placeholder="Enter ..." name="passager_principal" value="<?php if(isset($_GET['get_id'])){ echo $pp;}?>" required>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label>Contact Number</label>
+                        <input type="text" class="form-control" placeholder="Enter ..." value="<?php if(isset($_GET['get_id'])){ echo $cn;}?>" name="contact_number" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label>Date de prise en charge</label>
+                        <input type="date" class="form-control" placeholder="Enter ..." value="<?php if(isset($_GET['get_id'])){ echo $dd;}?>" name="date_de_prise_en_charge" required>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label>Time</label>
+                        <input type="time" class="form-control" placeholder="Enter ..." value="<?php if(isset($_GET['get_id'])){ echo $tm;}?>" name="Time" required>
+                      </div>
+                    </div>
+                  </div>
 
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label>Type de mission</label>
+                        <select class="form-control Type_select" style="width: 100%;" name="tm_id" id="tm_id">
+                        <option value="null" selected disabled >---- Select the Type ---- </option>
+                        <?php
+                        $sql="select * from `Type_mission`";
+                        $result = mysqli_query($con,$sql);
+                        if (mysqli_num_rows($result) > 0 ) {
+                        while($row=mysqli_fetch_assoc($result)){
+                            echo '<option  value="'.$row["tm_id"].'" required';
+                            if($row["tm_id"]== $tdm) echo ' selected';
+                            echo '>'.$row["type_m"].'</option>';
+                        }}   
+                        ?>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <!-- text input -->
+                      <div class="form-group">                        
+                        <label for="select_quesntion">Type de mission Desc</label> | 
+                        <input type="radio"  name="select_quesntion" id="select_quesntion" value="desc" onclick="EnableType()"
+                        <?php 
+                        if($sq=='desc') 
+                        {
+                          echo "checked";
+                        }
+                        ?> 
+                        >Yes
+                        <?php 
+                        if(isset($_GET['get_id']) && $sq =='desc'){  
+                         ?>
+                        <input type="radio"  name="select_quesntion" id="select_quesntion"  value="Nodesc" onclick="EnableType()"
+                        <?php 
+                        if($sq=='Nodesc') 
+                        {
+                          echo "checked";
+                        }
+                        ?>
+                        >No |
+                        <?php }else{?>
+                        <input type="radio"  name="select_quesntion" id="select_quesntion" checked value="Nodesc" onclick="EnableType()">No |
+                        <?php }?>
+                        <?php 
+                        if(isset($_GET['get_id']) && $sq =='desc'){  
+                        ?>
+                        <input type="text" class="form-control" id="typedescrib" name="type_desc" value="<?php if(isset($_GET['get_id'])){ echo $td;}?>"  placeholder="Type Desc">
+                        <?php }else{?>
+                        <input type="text" class="form-control" id="typedescrib" name="type_desc" disabled="disabled"   placeholder="Type Desc">
+                        <?php }?>
+                 
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- textarea -->
+                      <div class="form-group">
+                        <label>Adresse du pick-up</label>
+                        <textarea class="form-control" rows="3" placeholder="Enter ..." name="adresse_du_pick_up" required><?php if(isset($_GET['get_id'])){ echo $pu;}?></textarea>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>Adresse de dépose</label>
+                        <textarea class="form-control" rows="3" placeholder="Enter ..."  name="adresse_de_depose" required><?php if(isset($_GET['get_id'])){ echo $dp;}?></textarea>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- textarea -->
+                      <div class="form-group">
+                        <label>Nb. de passager</label>
+                        <input type="text" class="form-control" placeholder="Enter ..." value="<?php if(isset($_GET['get_id'])){ echo $np;}?>" name="nb_de_passager" required >
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <!-- text input -->
+                      <div class="form-group">                        
+                        <label>Passenger Description</label> | 
+                        <input type="radio" id="passengerdesc" name="passenger_select_quesntion" value="pdesc"  onclick="EnablePassengerType()"
+                        <?php 
+                        if($psq=='pdesc') 
+                        {
+                          echo "checked";
+                        }
+                        ?> 
+                        >Yes
+                        <?php 
+                        if(isset($_GET['get_id']) && $psq =='pdesc'){  
+                         ?>
+                        <input type="radio" id="pd" name="passenger_select_quesntion" value="Nopdesc"  onclick="EnablePassengerType()"
+                        <?php 
+                        if($psq=='Nopdesc') 
+                        {
+                          echo "checked";
+                        }
+                        ?>
+                        >No |
+                        <?php }else{?>
+                        <input type="radio" id="pd" name="passenger_select_quesntion" value="Nopdesc" checked  onclick="EnablePassengerType()">No | 
+                        <?php }?>
+                        <?php 
+                        if(isset($_GET['get_id']) && $psq =='pdesc'){  
+                        ?>
+                        <input type="text" class="form-control" id="passengerdescrib" name="passenger_select_desc"  value="<?php if(isset($_GET['get_id'])){ echo $psd;}?>"  placeholder="Passenger Desc">
+                        <?php }else{?>
+                        <input type="text" class="form-control" id="passengerdescrib" name="passenger_select_desc" disabled="disabled"   placeholder="Passenger Desc">
+                        <?php }?>
+                 
+                        
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label>Chauffeur</label>
+                        <select class="form-control Chauffeur_select" style="width: 100%;" name="d_id" id="didx"  onchange="showTelNum(this.value)" >
+                        <option value="null" selected disabled >---- Select the Chauffeur ---- </option>
+                        <?php
+                        $sql="select * from `driver`";
+                        $result = mysqli_query($con,$sql);
+                        if (mysqli_num_rows($result) > 0 ) {
+                        while($row=mysqli_fetch_assoc($result)){
+                            echo '<option  value="'.$row["d_id"].'" required';
+                            if($row["d_id"]== $dn) echo ' selected';
+                            echo '>'.$row["dname"].'</option>';
+                        }}   
+                        ?>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label>Chauffeur Contact Number</label>
+                        <select class="form-control select2" style="width: 100%;" id="tel_num" name="tel_id" disabled="disabled" required>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label>Véhicule</label>
+                        <select class="form-control Vehicule_select" style="width: 100%;" name="Vehicule_num" id="vidx" value="<?php if(isset($_GET['get_id'])){ echo $vn;}?>" >
+                        <option  selected disabled >---- Select the Véhicule ---- </option>
+                        <?php
+                        $sql="select * from `vehicule`";
+                        $result = mysqli_query($con,$sql);
+                        if (mysqli_num_rows($result) > 0 ) {
+                        while($row=mysqli_fetch_assoc($result)){
+                            echo '<option  value="'.$row["v_id"].'" required';
+                            if($row["v_id"]== $vn) echo ' selected';
+                            echo '>'.$row["Vehicule_num"].'</option>';
+                        }}   
+                        ?>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label>Tarif</label>
+                        <input type="text" class="form-control" placeholder="Enter ..." value="<?php if(isset($_GET['get_id'])){ echo $ta;}?>"name="Tarif" required>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>Options</label> | 
+                        <input type="radio" id="op_question" name="op_question" value="OnOption"  onclick="EnableOptions()"
+                        <?php 
+                        if($op_q=='OnOption') 
+                        {
+                          echo "checked";
+                        }
+                        ?> 
+                        >Yes
+                        <?php 
+                        if(isset($_GET['get_id']) && $op_q =='OnOption'){  
+                         ?>
+                        <input type="radio" id="op" name="op_question" value="NoOption"  onclick="EnableOptions()"
+                        <?php 
+                        if($op_q=='NoOption') 
+                        {
+                          echo "checked";
+                        }
+                        ?>
+                        >No |
+                        <?php }else{?>
+                        <input type="radio" id="op" name="op_question" value="NoOption" checked onclick="EnableOptions()">No | 
+                        <?php }?>
+                        <?php 
+                        if(isset($_GET['get_id']) && $op_q=='OnOption'){  
+                        ?>
+                        <input type="text" class="form-control" id="OptionsEdit" name="op_desc" placeholder="Enter ... Desc"  value="<?php if(isset($_GET['get_id'])){ echo $op_d;}?>">
+                        <?php }else{?>
+                        <input type="text" class="form-control" id="OptionsEdit" name="op_desc" disabled="disabled"  placeholder="Enter ... Desc" >
+                        <?php }?>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>Who Given Booking</label> 
+                        <input type="text" class="form-control" id="whogiven" name="whogiven"  placeholder="Enter ..."  value="<?php if(isset($_GET['get_id'])){ echo $wg;}?>" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <?php
+                        if(isset($_GET['get_id'])){
+                        ?>
+                        <input type="submit" class="btn btn-danger btn-block" value="- Edit Booking" name="edit">
+                        <?php
+                        }else{
+                        ?>
+                        <input type="submit" class="btn btn-primary btn-block" value="+ Add Booking" name="add">
+                        <?php
+                        }
+                        ?> 
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                </div>
+
+            <!-- /.card-body -->
+
+        </div>
+      <!-- /.card -->
+    </section>
 
     <!-- /.content -->
   </div>
@@ -112,7 +410,7 @@ if(isset($_POST['add'])){
     !empty($_POST['d_id'])&&
     !empty($_POST['Vehicule_num'])&&
     !empty($_POST['Tarif'])&&
-    !empty($_POST['Type'])&&
+    !empty($_POST['tm_id'])&&
     !empty($_POST['whogiven'])){
 
         
@@ -126,12 +424,12 @@ if(isset($_POST['add'])){
         $d_id=$_POST['d_id'];
         $Vehicule_num=$_POST['Vehicule_num'];
         $Tarif=$_POST['Tarif'];
-        $Type_de_mission=$_POST['Type'];
+        $tm_id=$_POST['tm_id'];
         $whogiven=$_POST['whogiven'];
 
 
-        $sql="INSERT INTO `passenger` (`passager_principal`,`contact_number`,`date_de_prise_en_charge`,`Time`,`adresse_du_pick_up`,`adresse_de_depose`,`nb_de_passager`,`d_id`,`Vehicule_num`,`Tarif`,`Type_de_mission`,`whogiven`) 
-        values('$passager_principal','$contact_number','$date_de_prise_en_charge','$Time','$adresse_du_pick_up','$adresse_de_depose','$nb_de_passager','$d_id','$Vehicule_num','$Tarif','$Type_de_mission','$whogiven')";
+        $sql="INSERT INTO `passenger` (`passager_principal`,`contact_number`,`date_de_prise_en_charge`,`Time`,`adresse_du_pick_up`,`adresse_de_depose`,`nb_de_passager`,`d_id`,`Vehicule_num`,`Tarif`,`tm_id`,`whogiven`) 
+        values('$passager_principal','$contact_number','$date_de_prise_en_charge','$Time','$adresse_du_pick_up','$adresse_de_depose','$nb_de_passager','$d_id','$Vehicule_num','$Tarif','$tm_id','$whogiven')";
         if(mysqli_query($con,$sql)){
             //$message ="<h5>New record created successfully</h5>";
           echo '<script>';
@@ -282,7 +580,7 @@ if(isset($_POST['edit'])){
   !empty($_POST['d_id'])&&
   !empty($_POST['Vehicule_num'])&&
   !empty($_POST['Tarif'])&&
-  !empty($_POST['Type'])&&
+  !empty($_POST['tm_id'])&&
   !empty($_POST['whogiven'])){
 
     $passager_principal=$_POST['passager_principal'];
@@ -295,7 +593,7 @@ if(isset($_POST['edit'])){
     $d_id=$_POST['d_id'];
     $Vehicule_num=$_POST['Vehicule_num'];
     $Tarif=$_POST['Tarif'];
-    $Type_de_mission=$_POST['Type'];
+    $tm_id=$_POST['tm_id'];
     $whogiven=$_POST['whogiven'];
 
 
@@ -311,7 +609,7 @@ if(isset($_POST['edit'])){
   `d_id`="'.$d_id.'",
   `Vehicule_num`="'.$Vehicule_num.'",
   `Tarif`="'.$Tarif.'",
-  `Type_de_mission`="'.$Type_de_mission.'",
+  `tm_id`="'.$tm_id.'",
   `whogiven`="'.$whogiven.'"
 
   where `p_id`="'.$pid.'"';
