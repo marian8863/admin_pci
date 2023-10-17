@@ -297,8 +297,8 @@ if(isset($_GET['get_id'])){
                       <!-- text input -->
                       <div class="form-group">
                         <label>Véhicule</label>
-                        <select class="form-control Vehicule_select" style="width: 100%;" name="Vehicule_num" id="vidx" value="<?php if(isset($_GET['get_id'])){ echo $vn;}?>" required>
-                        <option value="null" selected disabled >---- Select the Véhicule ---- </option>
+                        <select class="form-control Vehicule_select" style="width: 100%;" name="Vehicule_num" id="vidx" value="<?php if(isset($_GET['get_id'])){ echo $vn;}?>" >
+                        <option  selected disabled >---- Select the Véhicule ---- </option>
                         <?php
                         $sql="select * from `vehicule`";
                         $result = mysqli_query($con,$sql);
