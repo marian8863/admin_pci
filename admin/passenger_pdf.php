@@ -38,14 +38,14 @@ if(isset($_GET['get_id'])){
             
                 <table class="table  table-sm">
                     <tr>
-                        <td>
+                        <td style="border: bottom">
                             <ul class="ml-4 mb-0 fa-ul text-muted">
                                 <li class="small"><img src="dist/img/logo_pdf.png" alt="" width="120px"></li>
                             </ul>
                         </td>
                         <td style="border: bottom 0px;text-align:right">
                             <ul class="ml-4 mb-0 fa-ul text-muted">
-                                <li class="small"><h6 class="lead"><b>Bon de mission :</b> PCI1000{{ get_id }}</h6></li>
+                                <li class="small"><h6 class="lead"><b>Bon de mission :</b> PCL1000{{ get_id }}</h6></li>
                             </ul>
                         </td>
                     </tr>
@@ -74,7 +74,7 @@ if(isset($_GET['get_id'])){
                     <tr>
                         <td  colspan="2" style="border: bottom 0px;text-align:center">
                             <ul class="ml-4 mb-0 fa-ul text-muted">
-                                <li class="small">JUSTIFICATION DE LA RESERVATION PREALABEL</li>
+                                <li class="small"><b>JUSTIFICATION DE LA RESERVATION PREALABEL</b></li>
                             </ul>
                         </td>
                     </tr>
