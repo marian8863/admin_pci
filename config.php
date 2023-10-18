@@ -17,9 +17,9 @@ session_start();
 // if (mysqli_connect_errno()){
 //   }else{
 //   }
-//$con = mysqli_connect('localhost', 'root', '', 'my_admin');
+$con = mysqli_connect('localhost', 'root', '', 'my_admin');
 //   $con = mysqli_connect('localhost','ceadhzdi_cedar', 'JKjayanth96@', 'ceadhzdi_cedar');
-$con = mysqli_connect('localhost','c1987705c', '7u33gvqUWtktw25', 'c1987705c_admin');
+//$con = mysqli_connect('localhost','c1987705c', '7u33gvqUWtktw25', 'c1987705c_admin');
 
   // variable declaration
 	$username = "";

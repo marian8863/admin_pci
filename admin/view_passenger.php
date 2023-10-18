@@ -137,7 +137,7 @@ $u_p = $_SESSION['user']['profile'];
                
                   <?php  
                     $sql="SELECT passenger.`p_id`,passenger.`passager_principal`,passenger.`date_de_prise_en_charge`,passenger.`Time`,type_mission.`type_m`,driver.`dname` 
-                    FROM passenger ,type_mission,driver where passenger.`tm_id`=type_mission.`tm_id` and passenger.`d_id`=driver.`d_id`";         
+                    FROM passenger ,type_mission,driver where passenger.`tm_id`=type_mission.`tm_id` and passenger.`d_id`=driver.`d_id` order by passenger.`p_id` desc ";         
                     $res=$con->query($sql);
                     while($row=$res->fetch_assoc()){    
                             
@@ -149,10 +149,10 @@ $u_p = $_SESSION['user']['profile'];
                         <td><?= $row['type_m']?></td>
                         <td><?= $row['passager_principal']?></td>
                         <td><?= $row['dname']?></td>
-                        <!-- print_invoice.php?get_id=<? //=$row["p_id"]?> -->
+                        <!--  -->
                         <td>
                             <a href="create_booking.php?get_id=<?= $row["p_id"]?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                            <a href="" class="btn btn-success"><i class="fas fa-download"></i></a> 
+                            <a href="print_invoice.php?get_id=<?=$row["p_id"]?>" target="_blank" class="btn btn-success"><i class="fas fa-download"></i></a> 
                             <button  class="btn btn-danger" data-href="?delete_id=<?=$row["p_id"]?>" data-toggle="modal" data-target="#confirm-delete-passenger"><i class="fas fa-trash"></i></button>
                         </td>
                     </tr>

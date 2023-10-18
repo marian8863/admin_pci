@@ -1,5 +1,10 @@
 
+<?php
+if(isset($_GET['get_id'])){
+    $pid=$_GET['get_id'];
 
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,40 +38,29 @@
             
                 <table class="table  table-sm">
                     <tr>
-                        <td style="border: bottom 0px;">
-                        <ul class="ml-4 mb-0 fa-ul text-muted">
-                        <li class="small">
-                            <img src="dist/img/logo_pdf.png" alt="" width="120px">
-                        </li>
-                        </ul>
+                        <td  style="border: bottom 0px;"> 
+                            <ul class="ml-4 mb-0 fa-ul text-muted">
+                            <li class="small"><img src="dist/img/logo_pdf.png" alt="" width="120px"></li>
+                            <li class="small"><h2 class="lead"><b>paris cab limousine <?php echo $pid;  ?> </b></h2></li>
+                            <li class="small"><b>44 avenue albert Sarraut <br>95190 Goussainville</b></li>
+                            <li class="small"><b>SIRET : </b>840056022</li>
+                            <li class="small"><b>TVA : </b>FR2084056022</li>
+                            <li class="small"><b>N° EVTC : </b>095180698</li>
+                            <li class="small"><b>Email: </b>pariscablimo@gmail.com</li>
+                            <li class="small"><b>Tél.: </b>+33 660 763 235</li>
+                            </ul>
                         </td>
-                        <td style="border: bottom 0px;"> <h5 class="lead"><b>Bon de mission :</b> PCI1000{{ get_id }}</h5></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="border: bottom 0px;">
-                        <ul class="ml-4 mb-0 fa-ul text-muted">
-                        <li class="small"><h1 class="lead"><b>paris cab limousine</b></h1></li>
-                        <li class="small"><b>44 avenue albert Sarraut <br>95190 Goussainville</b></li>
-                        <li class="small"><b>SIRET : </b>840056022</li>
-                        <li class="small"><b>TVA : </b>FR2084056022</li>
-                        <li class="small"><b>N° EVTC : </b>095180698</li>
-                        <li class="small"><b>Email: </b>pariscablimo@gmail.com</li>
-                        <li class="small"><b>Tél.: </b>+33 660 763 235</li>
-                        </ul>
+                        <td style="border: bottom 0px;text-align:right"> 
+                            <ul class="ml-4 mb-0 fa-ul text-muted">
+                                <li class="small"><h6 class="lead"><b>Bon de mission :</b> PCI1000{{ get_id }}</h6></li>
+                                <li class="small">SERVICE DE VOITURE DE TRANSPORT AVEC CHAUFFEUR</li>
+                                <li class="small">JUSTIFICATION DE LA RESERVATION PREALABEL</li>
+                                <li class="small"> Article R3120-2 du code des transport- Arrêté du 30 juillet 2013</li>
+                            </ul>
                         </td>
+
+                       
                     </tr>
-
-                    <tr>
-                        <td colspan="2"  style="text-align:center;border: bottom 0px;">
-                        <ul class="ml-4 mb-0 fa-ul text-muted">
-                        <li class="small"><b>SERVICE DE VOITURE DE TRANSPORT AVEC CHAUFFEUR</b></li>
-
-                        <li class="small"><b>JUSTIFICATION DE LA RESERVATION PREALABEL</b></li>
-                        </ul>
-</td>
-                    </tr>
-  
-
                     <tr>
                         <td colspan="2">
 
@@ -75,7 +69,7 @@
 
                                 <tr>
                                     <th>Référence</th>
-                                    <td>Réservation PCI1000{{ get_id }} du 25/09/2023</td>
+                                    <td>Réservation PCI1000{{ get_id }} du</td>
                                 </tr>
                                 <tr>
                                     <th>Date de prise en charge</th>
@@ -107,10 +101,10 @@
                                     <th>Véhicule</th>
                                     <td>{{ Vehicule_num }}</td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <th>Options</th>
-                                    <td>{{ options }}</td>
-                                </tr>
+                                    <td>{{ op_desc }}</td>
+                                </tr> -->
                                 <tr>
                                     <th>Tarif</th>
                                     <td>{{ Tarif }} €</td>
@@ -144,10 +138,7 @@
 
 
 <!-- ./wrapper -->
-<footer class="main-footer">
-    <strong>( Article R3120-2 du code des transport- Arrêté du 30 juillet 2013 ).</strong>
 
-  </footer>
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->

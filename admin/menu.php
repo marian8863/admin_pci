@@ -360,6 +360,15 @@ $u_p = $_SESSION['user']['profile'];
               </li>
 
               <li class="nav-item">
+                <a href="view_type_mission" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>
+                    Type Mission
+                  </p>
+                </a>
+              </l
+
+              <li class="nav-item">
                 <a href="view_vehicule" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
