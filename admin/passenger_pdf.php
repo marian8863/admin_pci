@@ -38,10 +38,21 @@ if(isset($_GET['get_id'])){
             
                 <table class="table  table-sm">
                     <tr>
+                        <td>
+                            <ul class="ml-4 mb-0 fa-ul text-muted">
+                                <li class="small"><img src="dist/img/logo_pdf.png" alt="" width="120px"></li>
+                            </ul>
+                        </td>
+                        <td style="border: bottom 0px;text-align:right">
+                            <ul class="ml-4 mb-0 fa-ul text-muted">
+                                <li class="small"><h6 class="lead"><b>Bon de mission :</b> PCI1000{{ get_id }}</h6></li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
                         <td  style="border: bottom 0px;"> 
                             <ul class="ml-4 mb-0 fa-ul text-muted">
-                            <li class="small"><img src="dist/img/logo_pdf.png" alt="" width="120px"></li>
-                            <li class="small"><h2 class="lead"><b>paris cab limousine <?php echo $pid;  ?> </b></h2></li>
+                            <li class="small"><h2 class="lead"><b>PARIS CAB LIMOUSINE  <?php echo $pid;  ?> </b></h2></li>
                             <li class="small"><b>44 avenue albert Sarraut <br>95190 Goussainville</b></li>
                             <li class="small"><b>SIRET : </b>840056022</li>
                             <li class="small"><b>TVA : </b>FR2084056022</li>
@@ -52,14 +63,20 @@ if(isset($_GET['get_id'])){
                         </td>
                         <td style="border: bottom 0px;text-align:right"> 
                             <ul class="ml-4 mb-0 fa-ul text-muted">
-                                <li class="small"><h6 class="lead"><b>Bon de mission :</b> PCI1000{{ get_id }}</h6></li>
                                 <li class="small">SERVICE DE VOITURE DE TRANSPORT AVEC CHAUFFEUR</li>
-                                <li class="small">JUSTIFICATION DE LA RESERVATION PREALABEL</li>
+                                
                                 <li class="small"> Article R3120-2 du code des transport- Arrêté du 30 juillet 2013</li>
                             </ul>
                         </td>
 
                        
+                    </tr>
+                    <tr>
+                        <td  colspan="2" style="border: bottom 0px;text-align:center">
+                            <ul class="ml-4 mb-0 fa-ul text-muted">
+                                <li class="small">JUSTIFICATION DE LA RESERVATION PREALABEL</li>
+                            </ul>
+                        </td>
                     </tr>
                     <tr>
                         <td colspan="2">
@@ -69,7 +86,7 @@ if(isset($_GET['get_id'])){
 
                                 <tr>
                                     <th>Référence</th>
-                                    <td>Réservation PCI1000{{ get_id }} du</td>
+                                    <td>Réservation PCI1000{{ get_id }}</td>
                                 </tr>
                                 <tr>
                                     <th>Date de prise en charge</th>
