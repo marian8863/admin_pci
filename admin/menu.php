@@ -402,54 +402,38 @@ $u_p = $_SESSION['user']['profile'];
 
           </li>
 
-          <?php if ($_SESSION['user']['user_type'] == 'admin') {?>
+          <?php if ($_SESSION['user']['user_type'] == 'ADM') {?>
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Revenues
+                Job Verification
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="new_pdf" class="nav-link">
+                <a href="view_passenger_action_completed" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
-                    bill
+                    View Completed Jobs 
                   </p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="rooms" class="nav-link">
+                <a href="view_passenger_action_cancel" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
-                    Rooms
+                    View Cancel Jobs  
                   </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="feb" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>
-                    FEB
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="month_summary" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>FEB Summary</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v3</p>
                 </a>
               </li>
             </ul>
           </li>
+          <?php } ?>
+
+          <?php if ($_SESSION['user']['user_type'] == 'admin') {?>
+
           <li class="nav-item">
             <a href="widgets" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
