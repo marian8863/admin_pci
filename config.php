@@ -3,23 +3,20 @@ session_start();
 
 //database connection
 // define('DB_HOST','mis.achchuthan.org');
-// define('DB_USER','misuser');
-// define('DB_PASS','mIs@SlgT1');
-// define('DB_NAME','mis');
+// define('DB_USER','c1987705c');
+// define('DB_PASS','7u33gvqUWtktw25');
+// define('DB_NAME','c1987705c_admin');
 
-// define('DB_HOST','localhost');
-// define('DB_USER','root');
-// define('DB_PASS','');
-// define('DB_NAME','cedar');
+
 
 
 // $con=mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME);
 // if (mysqli_connect_errno()){
 //   }else{
 //   }
-//$con = mysqli_connect('localhost', 'root', '', 'my_admin');
+$con = mysqli_connect('localhost', 'root', '', 'my_admin');
 //   $con = mysqli_connect('localhost','ceadhzdi_cedar', 'JKjayanth96@', 'ceadhzdi_cedar');
-$con = mysqli_connect('localhost','c1987705c', '7u33gvqUWtktw25', 'c1987705c_admin');
+//$con = mysqli_connect('localhost','c1987705c', '7u33gvqUWtktw25', 'c1987705c_admin');
 
   // variable declaration
 	$username = "";

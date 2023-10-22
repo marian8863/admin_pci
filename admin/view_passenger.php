@@ -137,13 +137,13 @@ $u_p = $_SESSION['user']['profile'];
                
                   <?php  
                     $sql="SELECT passenger.`p_id`,passenger.`passager_principal`,passenger.`date_de_prise_en_charge`,passenger.`Time`,type_mission.`type_m`,driver.`dname` 
-                    FROM passenger ,type_mission,driver where passenger.`tm_id`=type_mission.`tm_id` and passenger.`d_id`=driver.`d_id` order by passenger.`p_id` desc ";         
+                    FROM passenger ,type_mission,driver where passenger.`tm_id`=type_mission.`tm_id` and passenger.`d_id`=driver.`d_id` and  passenger.`Create_job_action`='created'";         
                     $res=$con->query($sql);
                     while($row=$res->fetch_assoc()){    
                             
                     ?>
                     <tr>
-                        <td><?= "PCL1000".$row['p_id']?></td>
+                        <td><a href="create_passenger_action.php?get_id=<?= $row["p_id"]?>"><?= "PCL1000".$row['p_id']?></a></td>
                         <td><?= $row['date_de_prise_en_charge']?></td>
                         <td><?= $row['Time']?></td>
                         <td><?= $row['type_m']?></td>
