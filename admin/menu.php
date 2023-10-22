@@ -310,7 +310,7 @@ $u_p = $_SESSION['user']['profile'];
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="booking.pariscablimousine.fr/admin/" class="nav-link">
+                <a href="http://booking.pariscablimousine.fr/admin/" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard v1</p>
                 </a>
