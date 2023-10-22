@@ -37,6 +37,7 @@ $u_p = $_SESSION['user']['profile'];
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
+
     
     <!-- /.content-header -->
 
@@ -86,6 +87,34 @@ $u_p = $_SESSION['user']['profile'];
                 echo "0 results";
             }
             ?>
+
+            <?php
+            $sql = "SELECT COUNT(p_id) AS job_completed FROM `passenger` where `Create_job_action`='completed'";
+            $result = mysqli_query($con, $sql);
+            if (mysqli_num_rows($result) > 0) {
+
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $j_com_c = $row["job_completed"];
+
+                }
+            } else {
+                echo "0 results";
+            }
+            ?>
+
+          <?php
+            $sql = "SELECT COUNT(p_id) AS job_cancel FROM `passenger` where `Create_job_action`='cancel'";
+            $result = mysqli_query($con, $sql);
+            if (mysqli_num_rows($result) > 0) {
+
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $j_can_c = $row["job_cancel"];
+
+                }
+            } else {
+                echo "0 results";
+            }
+            ?>
         <div class="row">
           <div class="col-lg-3 col-6">
             <!-- small box -->
@@ -96,7 +125,7 @@ $u_p = $_SESSION['user']['profile'];
                 <p>Drivers Count</p>
               </div>
               <div class="icon">
-                <i class="ion ion-bag"></i>
+                <i class="ion ion-stats-bars"></i>
               </div>
               <a class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -104,7 +133,7 @@ $u_p = $_SESSION['user']['profile'];
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-success">
+            <div class="small-box bg-warning">
               <div class="inner">
                 <h3><?php echo $p_t; ?></h3>
 
@@ -124,6 +153,36 @@ $u_p = $_SESSION['user']['profile'];
                 <h3><?php echo $v_t; ?></h3>
 
                 <p>Vehicule Count</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3><?php echo $j_com_c; ?></h3>
+
+                <p>Completed Jobs </p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3><?php echo $j_can_c; ?></h3>
+
+                <p>Cancel Jobs </p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
