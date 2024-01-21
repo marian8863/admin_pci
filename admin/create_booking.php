@@ -17,20 +17,19 @@ $vn=$dn=$sq=$psq=$op_q=$tdm=$cd=$op_tel_q=$tti=null;
 
 if(isset($_GET['get_id'])){
   $pid=$_GET['get_id'];
-  $sql="SELECT passenger.passager_principal,passenger.contact_number,passenger.date_de_prise_en_charge,passenger.Time,passenger.adresse_du_pick_up,tarif_type.type_tt,tarif_type.tt_id,
-  passenger.adresse_de_depose,passenger.nb_de_passager,passenger.d_id,passenger.Vehicule_num,passenger.chauffeur_desc,passenger.Tarif,passenger.tm_id,passenger.whogiven,option_desc.op_desc,option_desc.op_question,passenger_description.passenger_select_quesntion,
-  passenger_description.passenger_select_desc,type_de_mission_desc.type_desc,type_de_mission_desc.select_quesntion,driver.dname,driver.dtp_num,type_mission.type_m,option_tel.op_tel_question,option_tel.op_tel_desc,select_an_option_desc.tm_desc
+  $sql="SELECT passenger.passager_principal,passenger.date_de_prise_en_charge,passenger.Time,passenger.adresse_du_pick_up,tarif_type.type_tt,tarif_type.tt_id,
+  passenger.adresse_de_depose,passenger.nb_de_passager,passenger.d_id,passenger.Vehicule_num,passenger.chauffeur_desc,passenger.Tarif,passenger.tm_id,option_desc.op_desc,option_desc.op_question,passenger_description.passenger_select_quesntion,
+  passenger_description.passenger_select_desc,type_de_mission_desc.type_desc,type_de_mission_desc.select_quesntion,driver.dname,driver.dtp_num,type_mission.type_m,option_tel.op_tel_question,option_tel.op_tel_desc,select_an_option_desc.tm_desc,who_give_booking.wg_desc,who_give_booking.wg_question
   
   
-  from passenger ,option_desc,passenger_description ,type_de_mission_desc,driver,type_mission,option_tel,select_an_option_desc,tarif_type
+  from passenger ,option_desc,passenger_description ,type_de_mission_desc,driver,type_mission,option_tel,select_an_option_desc,tarif_type,who_give_booking
   
-  WHERE passenger.p_id=option_desc.p_id and passenger.p_id=passenger_description.p_id and passenger.p_id=type_de_mission_desc.p_id and passenger.tm_id=type_mission.tm_id and passenger.d_id=driver.d_id and  passenger.p_id=option_tel.p_id and passenger.tm_id=select_an_option_desc.tm_id and passenger.p_id=select_an_option_desc.p_id and passenger.tt_id=tarif_type.tt_id and
+  WHERE passenger.p_id=option_desc.p_id and passenger.p_id=passenger_description.p_id and passenger.p_id=type_de_mission_desc.p_id and passenger.tm_id=type_mission.tm_id and passenger.d_id=driver.d_id and  passenger.p_id=option_tel.p_id and passenger.tm_id=select_an_option_desc.tm_id and passenger.p_id=select_an_option_desc.p_id and passenger.tt_id=tarif_type.tt_id and passenger.p_id=who_give_booking.p_id and
   passenger.p_id=$pid";
     $result = mysqli_query($con,$sql);
     if(mysqli_num_rows($result)==1) {       
         $row=mysqli_fetch_assoc($result);
         $pp=$row['passager_principal'];
-        $cn=$row['contact_number'];
         $dd=$row['date_de_prise_en_charge'];
         $tm=$row['Time'];
         $pu=$row['adresse_du_pick_up'];
@@ -48,7 +47,8 @@ if(isset($_GET['get_id'])){
         $psd=$row['passenger_select_desc'];
         $td=$row['type_desc'];
         $sq=$row['select_quesntion'];
-        $wg=$row['whogiven'];
+        $wg_q=$row['wg_question'];
+        $wg=$row['wg_desc'];
         $op_tel_q=$row['op_tel_question'];
         $op_tel_desc=$row['op_tel_desc'];
         $Dispo_Hours=$row['tm_desc'];
@@ -188,7 +188,7 @@ if(isset($_GET['get_id'])){
 
                   <div class="row">
                     <div class="col-sm-6">
-                      <label for="selection">Select an option:</label>
+                      <label for="selection">Type de mission</label>
                       <select class="form-control custom-select" style="width: 100%;" onchange="showSelectOption(this.value);" name="tm_id">
                           <option value="null" selected disabled >-- Select an option --</option>
                         <?php
@@ -352,7 +352,7 @@ if(isset($_GET['get_id'])){
                     <div class="col-sm-12">
                       <div class="form-group">
                         <label>Chauffeur Desc</label>
-                        <textarea class="form-control" rows="3" placeholder="Enter ..."  name="chauffeur_desc" required><?php if(isset($_GET['get_id'])){ echo $cha_d;}?></textarea>
+                        <textarea class="form-control" rows="3" placeholder="Enter ..."  name="chauffeur_desc" required><?php if(isset($_GET['get_id'])){ echo $cha_d;}else{echo 'Merci d’envoyer Statut : En route / Sur place / À bord / Déposé ';}?></textarea>
                       </div>
                     </div>
                   </div>
@@ -440,10 +440,39 @@ if(isset($_GET['get_id'])){
                         <?php }?>
                       </div>
                     </div>
+
                     <div class="col-sm-6">
                       <div class="form-group">
-                        <label>Who Given Booking</label> 
-                        <input type="text" class="form-control" id="whogiven" name="whogiven"  placeholder="Enter ..."  value="<?php if(isset($_GET['get_id'])){ echo $wg;}?>" required>
+                        <label>Who Given Booking</label> | 
+                        <input type="radio" id="wg_question" name="wg_question" value="wgOption"  onclick="Enable_wgOptions()"
+                        <?php 
+                        if($wg_q=='wgOption') 
+                        {
+                          echo "checked";
+                        }
+                        ?> 
+                        >Yes
+                        <?php 
+                        if(isset($_GET['get_id']) && $wg_q =='wgOption'){  
+                         ?>
+                        <input type="radio" id="op" name="wg_question" value="No_wgOption"  onclick="Enable_wgOptions()"
+                        <?php 
+                        if($wg_q=='No_wgOption') 
+                        {
+                          echo "checked";
+                        }
+                        ?>
+                        >No |
+                        <?php }else{?>
+                        <input type="radio" id="op" name="wg_question" value="No_wgOption" checked onclick="Enable_wgOptions()">No | 
+                        <?php }?>
+                        <?php 
+                        if(isset($_GET['get_id']) && $wg_q=='wgOption'){  
+                        ?>
+                        <input type="text" class="form-control" id="Options_wgEdit" name="wg_desc" placeholder="Enter ... Desc"  value="<?php if(isset($_GET['get_id'])){ echo $wg;}?>">
+                        <?php }else{?>
+                        <input type="text" class="form-control" id="Options_wgEdit" name="wg_desc" disabled="disabled"  placeholder="Enter ... Desc" >
+                        <?php }?>
                       </div>
                     </div>
                   </div>
@@ -495,8 +524,7 @@ if(isset($_POST['add'])){
     !empty($_POST['Vehicule_num'])&&
     !empty($_POST['Tarif'])&&
     !empty($_POST['Tarif_Types'])&&
-    !empty($_POST['tm_id'])&&
-    !empty($_POST['whogiven'])){
+    !empty($_POST['tm_id'])){
       
      
         $passager_principal=$_POST['passager_principal'];
@@ -512,10 +540,9 @@ if(isset($_POST['add'])){
         $Tarif=$_POST['Tarif'];
         $Tarif_Types=$_POST['Tarif_Types'];
         $tm_id=$_POST['tm_id'];
-        $whogiven=$_POST['whogiven'];
 
-        $sql='INSERT INTO `passenger` (`passager_principal`,`date_de_prise_en_charge`,`Time`,`adresse_du_pick_up`,`adresse_de_depose`,`nb_de_passager`,`d_id`,`Vehicule_num`,`chauffeur_desc`,`Tarif`,`tt_id`,`tm_id`,`whogiven`) 
-        values("'.$passager_principal.'","'.$date_de_prise_en_charge.'","'.$Time.'","'.$adresse_du_pick_up.'","'.$adresse_de_depose.'","'.$nb_de_passager.'","'.$d_id.'","'.$Vehicule_num.'",,"'.$chauffeur_desc.'","'.$Tarif.'","'.$Tarif_Types.'","'.$tm_id.'","'.$whogiven.'")';
+        $sql='INSERT INTO `passenger` (`passager_principal`,`date_de_prise_en_charge`,`Time`,`adresse_du_pick_up`,`adresse_de_depose`,`nb_de_passager`,`d_id`,`Vehicule_num`,`chauffeur_desc`,`Tarif`,`tt_id`,`tm_id`) 
+        values("'.$passager_principal.'","'.$date_de_prise_en_charge.'","'.$Time.'","'.$adresse_du_pick_up.'","'.$adresse_de_depose.'","'.$nb_de_passager.'","'.$d_id.'","'.$Vehicule_num.'",,"'.$chauffeur_desc.'","'.$Tarif.'","'.$Tarif_Types.'","'.$tm_id.'")';
         if(mysqli_query($con,$sql)){
         // $sql="INSERT INTO `passenger` (`passager_principal`,`contact_number`,`date_de_prise_en_charge`,`Time`,`adresse_du_pick_up`,`adresse_de_depose`,`nb_de_passager`,`d_id`,`Vehicule_num`,`Tarif`,`tm_id`,`whogiven`) 
         // values('$passager_principal','$contact_number','$date_de_prise_en_charge','$Time','$adresse_du_pick_up','$adresse_de_depose','$nb_de_passager','$d_id','$Vehicule_num','$Tarif','$tm_id','$whogiven')";
@@ -609,6 +636,40 @@ if(mysqli_query($con,$sql)){
 
       $sql="INSERT INTO `option_desc` (`p_id`,`op_desc`,`op_question`) 
       values('$id','NoOption','$op_question')";
+      if(mysqli_query($con,$sql)){
+          //$message ="<h5>New record created successfully</h5>";
+      }else{
+        echo "Error :-".$sql.
+      "<br>"  .mysqli_error($con);
+      }
+
+    }}
+
+
+    //who give booking           
+    if($_POST['wg_question'] == 'wgOption'){
+      if(!empty($_POST['wg_desc']) && !empty($_POST['wg_question'])){
+
+      $wg_desc=$_POST['wg_desc'];
+      $wg_question=$_POST['wg_question'];
+
+      $sql="INSERT INTO `who_give_booking` (`p_id`,`wg_desc`,`wg_question`) 
+      values('$id','$wg_desc','$wg_question')";
+      if(mysqli_query($con,$sql)){
+          $message ="<h5>New record created successfully option</h5>";
+          echo $message;
+      }else{
+        echo "Error :-".$sql.
+      "<br>"  .mysqli_error($con);
+      }
+
+    }}else if($_POST['wg_question'] == 'No_wgOption'){
+      if(!empty($_POST['wg_question'])){
+
+      $wg_question=$_POST['wg_question'];
+
+      $sql="INSERT INTO `who_give_booking` (`p_id`,`wg_desc`,`wg_question`)  
+      values('$id','No_wgOption','$wg_question')";
       if(mysqli_query($con,$sql)){
           //$message ="<h5>New record created successfully</h5>";
       }else{
@@ -740,8 +801,7 @@ if(isset($_POST['edit'])){
   !empty($_POST['chauffeur_desc'])&&
   !empty($_POST['Tarif'])&&
   !empty($_POST['Tarif_Types'])&&
-  !empty($_POST['tm_id'])&&
-  !empty($_POST['whogiven'])){
+  !empty($_POST['tm_id'])){
 
       //     
 
@@ -757,7 +817,6 @@ if(isset($_POST['edit'])){
     $Tarif=$_POST['Tarif'];
     $Tarif_Types=$_POST['Tarif_Types'];
     $tm_id=$_POST['tm_id'];
-    $whogiven=$_POST['whogiven'];
 
 
 
@@ -773,8 +832,7 @@ if(isset($_POST['edit'])){
   `chauffeur_desc`="'.$chauffeur_desc.'",
   `Tarif`="'.$Tarif.'",
   `tt_id`="'.$Tarif_Types.'",
-  `tm_id`="'.$tm_id.'",
-  `whogiven`="'.$whogiven.'"
+  `tm_id`="'.$tm_id.'"
 
   where `p_id`="'.$pid.'"';
 
@@ -836,6 +894,46 @@ if($_POST['op_question'] == 'OnOption'){
   $sql='UPDATE  `option_desc` set 
   `op_desc` = "NoOption",
   `op_question`="'.$op_question.'"
+  
+  where `p_id`="'.$pid.'"';
+  if(mysqli_query($con,$sql)){
+      //$message ="<h5>New record created successfully</h5>";
+  }else{
+    echo "Error :-".$sql.
+  "<br>"  .mysqli_error($con);
+  }
+
+}}
+
+
+ //who give booking            
+if($_POST['wg_question'] == 'wgOption'){
+  if(!empty($_POST['wg_desc']) && !empty($_POST['wg_question'])){
+
+  $wg_desc=$_POST['wg_desc'];
+  $wg_question=$_POST['wg_question'];
+
+  $sql='UPDATE  `who_give_booking` set 
+  `wg_desc` ="'.$wg_desc.'",
+  `wg_question`="'.$wg_question.'"
+  
+  where `p_id`="'.$pid.'"';
+  if(mysqli_query($con,$sql)){
+      //$message ="<h5>New record created successfully</h5>";
+
+  }else{
+    echo "Error :-".$sql.
+  "<br>"  .mysqli_error($con);
+  }
+
+}}else if($_POST['wg_question'] == 'No_wgOption'){
+  if(!empty($_POST['wg_question'])){
+
+  $wg_question=$_POST['wg_question'];
+
+  $sql='UPDATE  `who_give_booking` set 
+  `wg_desc` = "No_wgOption",
+  `wg_question`="'.$wg_question.'"
   
   where `p_id`="'.$pid.'"';
   if(mysqli_query($con,$sql)){

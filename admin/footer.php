@@ -257,6 +257,16 @@ $('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href
         }
     }
 
+    function Enable_wgOptions() {
+        var wgOptions = document.getElementById("wg_question");
+        var Options_wgEdit = document.getElementById("Options_wgEdit");
+        Options_wgEdit.disabled = wgOptions.checked ? false : true;
+        Options_wgEdit.value="";
+        if (!Options_wgEdit.disabled) {
+          Options_wgEdit.focus();
+        }
+    }
+
     function EnableCNum() {
         var cnumss = document.getElementById("c_num");
         var typeCnum = document.getElementById("typeCnum");

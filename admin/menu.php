@@ -377,14 +377,23 @@ $u_p = $_SESSION['user']['profile'];
                 </a>
               </li>
 
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a href="view_company" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
                     View Company
                   </p>
                 </a>
+              </li> -->
+              <li class="nav-item">
+                <a href="view_tarif_type" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>
+                    View Tarif Type
+                  </p>
+                </a>
               </li>
+              
               <?php if ($_SESSION['user']['user_type'] == 'admin') {?>
               <li class="nav-item">
                 <a href="feb" class="nav-link">

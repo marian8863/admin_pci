@@ -19,7 +19,6 @@ if(isset($_GET['get_id'])){
     tarif_type.type_tt,
     select_an_option_desc.tm_id,
     type_mission.type_m,
-    passenger.whogiven,
     option_tel.op_tel_desc,
     option_tel.op_tel_question,
     vehicule.Vehicule_num,
@@ -29,10 +28,12 @@ if(isset($_GET['get_id'])){
     passenger_description.passenger_select_quesntion,
     option_desc.op_desc,
     option_desc.op_question,
-    select_an_option_desc.tm_desc
+    select_an_option_desc.tm_desc,
+    who_give_booking.wg_desc,
+    who_give_booking.wg_question
 
-    FROM passenger,option_tel,vehicule,type_mission,type_de_mission_desc,passenger_description,driver,tarif_type,option_desc,select_an_option_desc
-    WHERE passenger.p_id=option_tel.p_id and vehicule.v_id=passenger.Vehicule_num and type_mission.tm_id=passenger.tm_id and type_de_mission_desc.p_id=passenger.p_id and passenger_description.p_id=passenger.p_id and driver.d_id=passenger.d_id and tarif_type.tt_id=passenger.tt_id and option_desc.p_id=passenger.p_id and select_an_option_desc.p_id=passenger.p_id
+    FROM passenger,option_tel,vehicule,type_mission,type_de_mission_desc,passenger_description,driver,tarif_type,option_desc,select_an_option_desc,who_give_booking
+    WHERE passenger.p_id=option_tel.p_id and vehicule.v_id=passenger.Vehicule_num and type_mission.tm_id=passenger.tm_id and type_de_mission_desc.p_id=passenger.p_id and passenger_description.p_id=passenger.p_id and driver.d_id=passenger.d_id and tarif_type.tt_id=passenger.tt_id and option_desc.p_id=passenger.p_id and select_an_option_desc.p_id=passenger.p_id and passenger.p_id=who_give_booking.p_id 
     
     and passenger.p_id=$pid";
       $result = mysqli_query($con,$sql);
@@ -54,7 +55,6 @@ if(isset($_GET['get_id'])){
           $type_tt=$row['type_tt'];
           $tm_id=$row['tm_id'];
           $type_m=$row['type_m'];
-          $whogiven=$row['whogiven'];
           $op_tel_desc=$row['op_tel_desc'];
           $op_tel_question=$row['op_tel_question'];
           $type_desc=$row['type_desc'];
@@ -64,6 +64,8 @@ if(isset($_GET['get_id'])){
           $op_desc=$row['op_desc'];
           $op_question=$row['op_question'];
           $tm_desc=$row['tm_desc'];
+          $wg_question=$row['wg_question'];
+          $wg_desc=$row['wg_desc'];
 
             
       }
@@ -76,7 +78,7 @@ if(isset($_GET['get_id'])){
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>PCL100<?php echo $pid;?></title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 
   </head>
@@ -84,7 +86,7 @@ if(isset($_GET['get_id'])){
    
   <div class="container" id="myBillingArea">
   <div class="row">
-      <div class="col-sm-4"><img src="dist/img/logo_pdf.png"></div>
+      <div class="col-sm-4"><img src="dist/img/logo_pdf.png" width="100px"></div>
       <div class="col-sm-8 " style="text-align:right">
           <p>Bon de mission : PCL100<?php echo $pid;?></p>      
       </div>
@@ -97,7 +99,7 @@ if(isset($_GET['get_id'])){
           <li>95190 Goussainville</li>
           <li>SIRET : 840056022</li>
           <li>TVA : FR2084056022</li>
-          <li>N° EVTC : 095180698</li>
+          <li>N° EVTC095180698</li>
           <li>Email: pariscablimo@gmail.com</li>
           <li>Tél.: +33 660 763 235</li>
           
@@ -110,7 +112,7 @@ if(isset($_GET['get_id'])){
   
       </div>
       <div class="col-5 text-center">
-      JUSTIFICATION DE LA RESERVATION PREALABEL
+      Justificatif de réservation préalable
       </div>
       <div class="col">
 
@@ -129,13 +131,9 @@ if(isset($_GET['get_id'])){
                     <th scope="row">Référence</th>
                     <td>PCL100<?php echo $pid;?></td>
                     </tr>
-                    <tr>
-                    <th scope="row">Date de prise en charge</th>
-                    <td><?php echo $date_de_prise_en_charge;?> | <?php echo $Time;?></td>
-                    </tr>
 
                     <tr>
-                    <th scope="row">Session Type</th>
+                    <th scope="row">Type de mission</th>
                     <td><?php echo $type_m;?> <?php if($tm_id == '4'){ echo '| Hours : ';} ?>
                     <?php 
                     if($tm_id == '4'){  
@@ -143,6 +141,11 @@ if(isset($_GET['get_id'])){
                     }
                     ?>
                     </td>
+                    </tr> 
+
+                    <tr>
+                    <th scope="row">Date de prise en charge</th>
+                    <td><?php echo $date_de_prise_en_charge;?> | <?php echo $Time;?></td>
                     </tr> 
 
                     <tr>
@@ -207,18 +210,25 @@ if(isset($_GET['get_id'])){
                     </tr>
                     <?php }?>
 
+                    <?php if($wg_question == 'wgOption'){ ?>
                     <tr>
                     <th scope="row">Booking</th>
-                    <td><?php echo $whogiven;?></td>
+                    <td><?php echo $wg_desc;?> </td>
                     </tr>
+                    <?php }?>
+
+
                 </tbody>
                 </table>
                 </div>
   </div>
   <div class="row">
   <div class="col-sm-12 text-center" >
-              <p style="font-size:12px">SERVICE DE VOITURE DE TRANSPORT AVEC CHAUFFEUR</p>
-              <p style="font-size:12px">Article R3120-2 du code des transport- Arrêté du 30 juillet 2013</p>
+              <p style="font-size:12px">SERVICE DE VOITURE DE TRANSPORT AVEC CHAUFFEUR <br>
+              <span style="font-size:10px">Article R3120-2 du code des transport- Arrêté du 30 juillet 2013</span>
+              </p>
+
+             
   </div>
   </div>
 </div>
