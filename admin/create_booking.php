@@ -391,7 +391,7 @@ if(isset($_GET['get_id'])){
                         <select class="form-control Vehicule_select" style="width: 100%;" name="Tarif_Types" id="vidx" value="<?php if(isset($_GET['get_id'])){ echo $tti;}?>" >
                         <option  selected disabled >---- Select the Tarif Type ---- </option>
                         <?php
-                        $sql="select * from `Tarif_Type`";
+                        $sql="select * from `tarif_type`";
                         $result = mysqli_query($con,$sql);
                         if (mysqli_num_rows($result) > 0 ) {
                         while($row=mysqli_fetch_assoc($result)){
