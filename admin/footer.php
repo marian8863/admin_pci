@@ -161,6 +161,10 @@ $('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href
       theme: 'bootstrap4'
     })
 
+    $('.companyx').select2({
+      theme: 'bootstrap4'
+    })
+
 
   });
 
@@ -252,7 +256,135 @@ $('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href
           OptionsEdit.focus();
         }
     }
+
+    function EnableCNum() {
+        var cnumss = document.getElementById("c_num");
+        var typeCnum = document.getElementById("typeCnum");
+        typeCnum.disabled = cnumss.checked ? false : true;
+        typeCnum.value="";
+        if (!typeCnum.disabled) {
+          typeCnum.focus();
+        }
+    }
 </script>
+
+
+<script>
+        function showTextBox() {
+            document.getElementById('textBox').style.display = 'block';
+            document.getElementById('comboBox').style.display = 'none';
+              document.getElementById("cnum_on").style.display = "block";
+      document.getElementById("cnum_off").style.display = "none";
+        }
+
+        function showComboBox() {
+            document.getElementById('textBox').style.display = 'none';
+            document.getElementById('comboBox').style.display = 'block';
+                document.getElementById("cnum_off").style.display = "block";
+      document.getElementById("cnum_on").style.display = "none";
+        }
+</script>
+
+<script>
+   // function showTextBox() {
+      // document.getElementById("textBox").style.display = "block";
+      // document.getElementById("comboBox").style.display = "none";
+      // document.getElementById("textBox").disabled = false;
+
+      // document.getElementById("cnum_on").style.display = "block";
+      // document.getElementById("cnum_off").style.display = "none";
+
+
+   // }
+
+   // function showComboBox() {
+      // document.getElementById("comboBox").style.display = "block";
+      // document.getElementById("textBox").style.display = "none";
+      // document.getElementById("textBox").disabled = true;
+
+      // document.getElementById("cnum_off").style.display = "block";
+      // document.getElementById("cnum_on").style.display = "none";
+
+
+    //}
+  </script>
+
+    <script>
+        //       function showInput() {
+        // var radiox = document.getElementById("radio1");
+        // var text_input = document.getElementById("text_input");
+        // var cnum = document.getElementById("cnum_on");
+
+
+        // var radioy = document.getElementById("radio2");
+        // var combo_box = document.getElementById("combo_box");
+        // var cnum_dis = document.getElementById("cnum_off");
+
+
+        // text_input.style.display  = radiox.checked ? false : true;
+        // cnum.style.display  = radiox.checked ? false : true;
+
+        
+        // combo_box.style.display  = radioy.checked ? false : true;
+        // cnum_dis.style.display  = radioy.checked ? false : true;
+
+
+        // text_input.value="";
+        // combo_box.value="";
+        // cnum.value="";
+        // cnum_dis.value="";
+
+        // if (!radiox.checked ) {
+        //   text_input.style.display = "block";
+        //   combo_box.style.display = "none";
+        //   // cnum.style.display = "none";
+        //   // cnum_dis.style.display = "block";
+
+
+
+        // }else if(!radioy.checked ){
+        //   text_input.style.display = "none";
+        //   combo_box.style.display = "block";
+        //   // cnum.style.display = "block";
+        //   // cnum_dis.style.display = "none";
+
+        // }
+        // }
+        // function showInput() {
+        //     var radio1 = document.getElementById("radio1");
+        //     var radio2 = document.getElementById("radio2");
+        //     var textInput = document.getElementById("text-input");
+        //     var comboBox = document.getElementById("combo-box");
+
+        //     if (radio1.checked) {
+        //       textInput.style.display = "none";
+        //         comboBox.style.display = "block";
+        //     } else if (radio2.checked) {
+          
+        //         textInput.style.display = "block";
+        //         comboBox.style.display = "none";
+        //     }
+        // }
+
+
+
+    </script>
+
+
+
+    <script type="text/javascript">
+      function showSelectOption(val){
+        var element=document.getElementById('tm_id');
+          if(val=='4')
+            element.style.display='block';
+          else
+            element.style.display='none';
+      }
+    </script>
+
+
+
+
 
 </body>
 </html>

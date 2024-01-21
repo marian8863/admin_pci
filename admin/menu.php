@@ -366,13 +366,22 @@ $u_p = $_SESSION['user']['profile'];
                     Type Mission
                   </p>
                 </a>
-              </l
+              </li>
 
               <li class="nav-item">
                 <a href="view_vehicule" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
                     View vehicule
+                  </p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="view_company" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>
+                    View Company
                   </p>
                 </a>
               </li>
