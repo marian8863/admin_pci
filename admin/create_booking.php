@@ -10,7 +10,7 @@ $u_t = $_SESSION['user']['user_type'];
 $u_p = $_SESSION['user']['profile'];
 
 
-$vn=$dn=$sq=$psq=$op_q=$tdm=$cd=$op_tel_q=$tti=null;
+$vn=$dn=$sq=$psq=$op_q=$tdm=$cd=$op_tel_q=$tti=$wg_q=null;
 ?>
 <!--END DON'T CHANGE THE ORDER-->
 <?php
@@ -352,7 +352,7 @@ if(isset($_GET['get_id'])){
                     <div class="col-sm-12">
                       <div class="form-group">
                         <label>Chauffeur Desc</label>
-                        <textarea class="form-control" rows="3" placeholder="Enter ..."  name="chauffeur_desc" required><?php if(isset($_GET['get_id'])){ echo $cha_d;}else{echo 'Merci d’envoyer Statut : En route / Sur place / À bord / Déposé ';}?></textarea>
+                        <textarea class="form-control" rows="3" placeholder="Enter ..."  name="chauffeur_desc" required><?php if(isset($_GET['get_id'])){ echo $cha_d;}?></textarea>
                       </div>
                     </div>
                   </div>
