@@ -87,4 +87,7 @@
     'normal' => $fontDir . '/font-awesome-5-free-normal_5e65ce7aaed9edcbeda40e38c35ded0e',
     '900' => $fontDir . '/font-awesome-5-free-900_6a5d9bcc11f493686eaebdc326607977',
   ),
+  'herr von muellerhoff' => array(
+    'normal' => $fontDir . '/herr-von-muellerhoff-normal_8884fcfe84e5289f4ceb1c34567b7bf1',
+  ),
 ) ?>
