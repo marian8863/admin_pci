@@ -35,7 +35,7 @@ if(isset($_GET['get_id'])){
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Drivers Detail
+              <li class="breadcrumb-item ">Drivers Detail
               <?php
                   // echo  $Sdate = new DateTime("now", new DateTimeZone('Asia/Colombo'));
                   // date_default_timezone_set('UTC');

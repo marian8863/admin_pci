@@ -1,3 +1,6 @@
+<style>
+
+</style>
 <?php
 // $u_n = $_SESSION['user_name'];
 // $u_ta = $_SESSION['user_table'];
@@ -330,6 +333,7 @@ $u_p = $_SESSION['user']['profile'];
             </ul>
           </li>
           <?php }?>
+          
 
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
@@ -340,9 +344,9 @@ $u_p = $_SESSION['user']['profile'];
               </p>
             </a>
 
-            <ul class="nav nav-treeview">
+            <ul class="nav nav-treeview myDIV" >
               <li class="nav-item">
-                <a href="view_drivers" class="nav-link">
+                <a href="view_drivers" class="nav-link clk ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
                   View Drivers
@@ -351,7 +355,7 @@ $u_p = $_SESSION['user']['profile'];
               </li>
              
               <li class="nav-item">
-                <a href="view_passenger" class="nav-link">
+                <a href="view_passenger" class="nav-link clk">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
                     View Passenger
@@ -359,8 +363,9 @@ $u_p = $_SESSION['user']['profile'];
                 </a>
               </li>
 
+
               <li class="nav-item">
-                <a href="view_type_mission" class="nav-link">
+                <a href="view_type_mission" class="nav-link clk">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
                     Type Mission
@@ -369,7 +374,7 @@ $u_p = $_SESSION['user']['profile'];
               </li>
 
               <li class="nav-item">
-                <a href="view_vehicule" class="nav-link">
+                <a href="view_vehicule" class="nav-link clk">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
                     View vehicule
@@ -386,7 +391,7 @@ $u_p = $_SESSION['user']['profile'];
                 </a>
               </li> -->
               <li class="nav-item">
-                <a href="view_tarif_type" class="nav-link">
+                <a href="view_tarif_type" class="nav-link clk">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
                     View Tarif Type

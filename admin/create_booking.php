@@ -544,11 +544,7 @@ if(isset($_POST['add'])){
         $sql='INSERT INTO `passenger` (`passager_principal`,`date_de_prise_en_charge`,`Time`,`adresse_du_pick_up`,`adresse_de_depose`,`nb_de_passager`,`d_id`,`Vehicule_num`,`chauffeur_desc`,`Tarif`,`tt_id`,`tm_id`) 
         values("'.$passager_principal.'","'.$date_de_prise_en_charge.'","'.$Time.'","'.$adresse_du_pick_up.'","'.$adresse_de_depose.'","'.$nb_de_passager.'","'.$d_id.'","'.$Vehicule_num.'","'.$chauffeur_desc.'","'.$Tarif.'","'.$Tarif_Types.'","'.$tm_id.'")';
         if(mysqli_query($con,$sql)){
-        // $sql="INSERT INTO `passenger` (`passager_principal`,`contact_number`,`date_de_prise_en_charge`,`Time`,`adresse_du_pick_up`,`adresse_de_depose`,`nb_de_passager`,`d_id`,`Vehicule_num`,`Tarif`,`tm_id`,`whogiven`) 
-        // values('$passager_principal','$contact_number','$date_de_prise_en_charge','$Time','$adresse_du_pick_up','$adresse_de_depose','$nb_de_passager','$d_id','$Vehicule_num','$Tarif','$tm_id','$whogiven')";
-        // if(mysqli_query($con,$sql)){
-            // $message ="<h5>New record created successfully</h5>";
-            // echo $message;
+
           echo '<script>';
           echo '
           Swal.fire({
@@ -644,6 +640,40 @@ if(mysqli_query($con,$sql)){
       }
 
     }}
+
+    //type_de_mission_desc
+if($_POST['select_quesntion'] == 'desc'){
+  if(!empty($_POST['type_desc']) && !empty($_POST['select_quesntion'])){
+
+  $type_desc=$_POST['type_desc'];
+  $select_quesntion=$_POST['select_quesntion'];
+
+  $sql="INSERT INTO `type_de_mission_desc` (`type_desc`,`select_quesntion`,`p_id`) 
+  values('$type_desc','$select_quesntion','$id')";
+  if(mysqli_query($con,$sql)){
+      //$message ="<h5>New record created successfully</h5>";
+  }else{
+    echo "Error :-".$sql.
+  "<br>"  .mysqli_error($con);
+  }
+
+  }
+}else if($_POST['select_quesntion'] == 'Nodesc'){
+if(!empty($_POST['select_quesntion'])){
+
+$select_quesntion=$_POST['select_quesntion'];
+
+$sql="INSERT INTO `type_de_mission_desc` (`type_desc`,`select_quesntion`,`p_id`) 
+values('Nodesc','$select_quesntion','$id')";
+if(mysqli_query($con,$sql)){
+    //$message ="<h5>New record created successfully</h5>";
+}else{
+  echo "Error :-".$sql.
+"<br>"  .mysqli_error($con);
+}
+
+}
+}
 
 
     //who give booking           
@@ -744,46 +774,6 @@ if($_POST['c_num'] == 'c_on'){
             "<br>"  .mysqli_error($con);
             }  
       }
-
-
-
-
-    
-//type_de_mission_desc
-if($_POST['select_quesntion'] == 'desc'){
-  if(!empty($_POST['type_desc']) && !empty($_POST['select_quesntion'])){
-
-  $type_desc=$_POST['type_desc'];
-  $select_quesntion=$_POST['select_quesntion'];
-
-  $sql="INSERT INTO `type_de_mission_desc` (`type_desc`,`select_quesntion`,`p_id`) 
-  values('$type_desc','$select_quesntion','$id')";
-  if(mysqli_query($con,$sql)){
-      //$message ="<h5>New record created successfully</h5>";
-  }else{
-    echo "Error :-".$sql.
-  "<br>"  .mysqli_error($con);
-  }
-
-  }
-}else if($_POST['select_quesntion'] == 'Nodesc'){
-if(!empty($_POST['select_quesntion'])){
-
-$select_quesntion=$_POST['select_quesntion'];
-
-$sql="INSERT INTO `type_de_mission_desc` (`type_desc`,`select_quesntion`,`p_id`) 
-values('Nodesc','$select_quesntion','$id')";
-if(mysqli_query($con,$sql)){
-    //$message ="<h5>New record created successfully</h5>";
-}else{
-  echo "Error :-".$sql.
-"<br>"  .mysqli_error($con);
-}
-
-}
-
-
-}
 }
 }
 ?>

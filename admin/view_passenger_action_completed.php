@@ -75,27 +75,33 @@ $u_p = $_SESSION['user']['profile'];
                     <th>Date</th>
                     <th>Time</th>
                     <th>Type de Mission</th>
-                    <th>Passager Principal</th>
-                    <th>Driver</th>
+                    <!-- <th>Passager Principal</th> -->
+                    <th>Tarif</th>
+                    <th>Action</th>
                     <!-- <th data-visible="false">Create Date</th> -->
                   </tr>
                   </thead>
                   <tbody>
                
                   <?php  
-                    $sql="SELECT distinct passenger.`p_id`,passenger.`passager_principal`,passenger.`date_de_prise_en_charge`,passenger.`Time`,type_mission.`type_m`,driver.`dname`,passenger.`Create_job_action` 
+                    $sql="SELECT distinct passenger.`p_id`,passenger.`passager_principal`,passenger.`date_de_prise_en_charge`,passenger.`Time`,passenger.`Tarif`,type_mission.`type_m`,driver.`dname`,passenger.`Create_job_action` 
                     FROM passenger ,type_mission,driver where passenger.`tm_id`=type_mission.`tm_id` and passenger.`d_id`=driver.`d_id` and  passenger.`Create_job_action`='completed'";         
                     $res=$con->query($sql);
                     while($row=$res->fetch_assoc()){    
                             
                     ?>
                     <tr>
-                        <td><?= "PCL1000".$row['p_id']?></td>
+                        <td><a href="create_passenger_action.php?get_id=<?= $row["p_id"]?>"><?= "PCL1000".$row['p_id']?></td>
                         <td><?= $row['date_de_prise_en_charge']?></td>
                         <td><?= $row['Time']?></td>
                         <td><?= $row['type_m']?></td>
-                        <td><?= $row['passager_principal']?></td>
-                        <td><?= $row['dname']?></td>
+                        <!-- <td>< $row['passager_principal']?></td> -->
+                        <td><?= $row['Tarif']?></td>
+                        <td>
+                            <a href="create_booking.php?get_id=<?= $row["p_id"]?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
+                            <a href="print_invoice1.php?get_id=<?=$row["p_id"]?>" target="_blank" class="btn btn-success"><i class="fas fa-download"></i></a> 
+                            <button  class="btn btn-danger" data-href="?delete_id=<?=$row["p_id"]?>" data-toggle="modal" data-target="#confirm-delete-passenger"><i class="fas fa-trash"></i></button>
+                        </td>
 
                         <!--  -->
                     </tr>

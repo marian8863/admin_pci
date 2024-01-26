@@ -5,8 +5,28 @@ use Dompdf\Options;
 
 // Include DOM Pdf autoload file
 require_once 'dompdf/autoload.inc.php';
+include '../config.php';
 if(isset($_GET['get_id'])){
-    $pid=$_GET['get_id'];}
+    $pid=$_GET['get_id'];
+
+    $sql="SELECT 
+
+    passenger.date_de_prise_en_charge,
+    type_mission.type_m
+
+    FROM passenger,type_mission
+    WHERE  type_mission.tm_id=passenger.tm_id and
+    
+     passenger.p_id=$pid";
+      $result = mysqli_query($con,$sql);
+      if(mysqli_num_rows($result)==1) {       
+          $row=mysqli_fetch_assoc($result);
+
+          $date_de_prise_en_charge=$row['date_de_prise_en_charge'];
+          $type_m=$row['type_m'];    
+      }
+
+}
 // Include database connection file
 //require_once "config.php";
 
@@ -80,7 +100,7 @@ $html = file_get_contents($url);
     $dompdf->render();
 
     // Output the generated PDF (1 = download and 0 = preview) 
-    $dompdf->stream("PCL100".$pid,  array("Attachment" => 1));
+    $dompdf->stream('('.$date_de_prise_en_charge.') -'.$type_m ,  array("Attachment" => 1));
 
 
 ?>

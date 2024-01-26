@@ -12,18 +12,7 @@ $u_p = $_SESSION['user']['profile'];
 ?>
 <!--END DON'T CHANGE THE ORDER-->
 
-<?php
 
-if(isset($_GET['get_id'])){
-    $pid=$_GET['get_id'];
-    // $sql="SELECT Vehicule_num from vehicule where v_id='$vid'";
-    // $result = mysqli_query($con,$sql);
-    // if(mysqli_num_rows($result)==1) {       
-    //     $row=mysqli_fetch_assoc($result);
-    //     $vn=$row['Vehicule_num'];
-    // }
-}
-?>
 
 
 <!--BLOCK#2 START YOUR CODE HERE -->
@@ -72,8 +61,37 @@ if(isset($_GET['get_id'])){
                             <label>Job verification</label>
                             <select class="form-control Type_select" style="width: 100%;" name="Create_job_action" id="Create_job_actionx">
                             <option value="null" selected disabled >---- Select the Type ---- </option>
+                            <?php
+
+if(isset($_GET['get_id'])){
+    $pid=$_GET['get_id'];
+    $sql="SELECT p_id,Create_job_action from passenger where p_id='$pid'";
+    $result = mysqli_query($con,$sql);
+    if(mysqli_num_rows($result)==1) {       
+        $row=mysqli_fetch_assoc($result);
+        
+        $Create_job_action=$row['Create_job_action'];
+        if($row['Create_job_action'] =='created'){
+?>
                             <option value="completed">Completed</option>
                             <option value="cancel">Cancel</option>
+<?php
+        }elseif($row['Create_job_action'] =='completed'){
+?>
+                            <option value="created">Go to Passenger</option>
+                            <option value="cancel">Cancel</option>
+<?php
+
+        }elseif($row['Create_job_action'] =='cancel'){
+?>
+                            <option value="created">Go to Passenger</option>
+                            <option value="completed">Completed</option>
+<?php
+        }
+    }
+}
+?>
+
                             </select>
                         </div>
                     </div>
@@ -120,6 +138,7 @@ if(isset($_POST['add'])){
   if(mysqli_query($con,$sql)){
    
     //$message ="<h4 class='text-success' >Update successfully</h4>";
+    if($row['Create_job_action'] =='created'){
     echo '<script>';
     echo '
     Swal.fire({
@@ -137,6 +156,43 @@ if(isset($_POST['add'])){
        });
     ';
     echo '</script>';
+  }elseif($row['Create_job_action'] =='completed'){
+    echo '<script>';
+    echo '
+    Swal.fire({
+       position: "top-end",
+   
+       icon: "success",
+       title: "Your Job has been '.$Create_job_action.'",
+       showConfirmButton: false,
+      
+       timer: 1500
+     }).then(function() {
+       // Redirect the user
+       window.location.href = "view_passenger_action_completed";
+   
+       });
+    ';
+    echo '</script>';
+  }elseif($row['Create_job_action'] =='cancel'){
+    echo '<script>';
+    echo '
+    Swal.fire({
+       position: "top-end",
+   
+       icon: "success",
+       title: "Your Job has been '.$Create_job_action.'",
+       showConfirmButton: false,
+      
+       timer: 1500
+     }).then(function() {
+       // Redirect the user
+       window.location.href = "view_passenger_action_cancel";
+   
+       });
+    ';
+    echo '</script>';
+  }
 
 }else{
     echo "Error :-".$sql.

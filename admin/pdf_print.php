@@ -80,6 +80,8 @@ if(isset($_GET['get_id'])){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PCL100<?php echo $pid;?></title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+      <!-- Font Awesome -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
 
   </head>
   <body>
@@ -200,7 +202,7 @@ if(isset($_GET['get_id'])){
                     </tr>
                     <tr>
                     <th scope="row">Tarif</th>
-                    <td><?php echo $Tarif;?> | <?php echo $type_tt;?></td>
+                    <td><?php echo '€ '.$Tarif;?> | <?php echo $type_tt;?></td>
                     </tr>
 
                     <?php if($op_question == 'OnOption'){ ?>

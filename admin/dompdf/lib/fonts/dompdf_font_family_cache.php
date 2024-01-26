@@ -80,4 +80,11 @@
   'glyphicons halflings' => array(
     'normal' => $fontDir . '/glyphicons-halflings-normal_2d9482ffb5896d226a21129847632341',
   ),
+  'font awesome 5 brands' => array(
+    'normal' => $fontDir . '/font-awesome-5-brands-normal_31a03386ae45abc35c74099e4da34439',
+  ),
+  'font awesome 5 free' => array(
+    'normal' => $fontDir . '/font-awesome-5-free-normal_5e65ce7aaed9edcbeda40e38c35ded0e',
+    '900' => $fontDir . '/font-awesome-5-free-900_6a5d9bcc11f493686eaebdc326607977',
+  ),
 ) ?>
