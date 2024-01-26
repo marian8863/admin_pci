@@ -81,6 +81,7 @@ if(isset($_GET['get_id'])){
     <title>PCL100<?php echo $pid;?></title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
       <!-- Font Awesome -->
+      <link href="https://fonts.googleapis.com/css?family=Herr+Von+Muellerhoff" rel="stylesheet">
 
   </head>
   <body>
