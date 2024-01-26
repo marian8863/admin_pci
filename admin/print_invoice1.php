@@ -76,7 +76,6 @@ if(isset($_GET['get_id'])){
 
 $url = 'http://booking.pariscablimousine.fr/admin/pdf_print.php?get_id=' . urlencode($pid);
 
-
 // Fetch the contents of the URL
 $html = file_get_contents($url);
 
